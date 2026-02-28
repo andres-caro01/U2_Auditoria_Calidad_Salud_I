@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glosario Unidad 1 - Salud</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- VARIABLES DE COLOR --- */
+        :root {
+            --primary-teal: #004F67;
+            --primary-dark: #004F67;
+            --bg-light: #ececec;
+            --text-dark: #333333;
+            --white: #ffffff;
+            --accent-alert: #004F67; 
+            --disabled-gray: #a0a0a0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-image: radial-gradient(#d0d0d0 1px, transparent 1px);
+            background-size: 10px 10px;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            margin: 0;
+            padding: 40px 20px;
+            box-sizing: border-box;
+        }
+
+        .glossary-widget {
+            width: 100%;
+            max-width: 900px;
+            background: transparent;
+            position: relative; 
+        }
+
+        .instruction-wrapper {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 10px;
+        }
+
+        .instruction-badge {
+            background-color: var(--accent-alert);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            animation: pulse-attention 2s infinite;
+            cursor: default;
+        }
+
+        @keyframes pulse-attention {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 79, 103, 0.4); }
+            70% { transform: scale(1.02); box-shadow: 0 0 0 10px rgba(0, 79, 103, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 79, 103, 0); }
+        }
+
+        .glossary-header {
+            background-color: var(--primary-teal);
+            color: var(--white);
+            padding: 20px;
+            text-align: center;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .glossary-header h1 {
+            margin: 0;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .glossary-body {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start; 
+        }
+
+        .tabs-container {
+            display: flex;
+            flex-direction: column;
+            width: 120px;
+            flex-shrink: 0;
+            background-color: var(--primary-teal);
+            border-radius: 15px;
+            padding: 10px 0;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 20px; 
+        }
+
+        .tab-btn {
+            background: transparent;
+            color: var(--white);
+            border: none;
+            padding: 15px 10px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            outline: none;
+        }
+
+        .tab-btn.disabled {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--disabled-gray);
+            cursor: not-allowed;
+        }
+
+        .tab-btn:hover:not(.disabled) {
+            background-color: rgba(255,255,255,0.1);
+        }
+
+        .tab-btn.active {
+            background-color: var(--bg-light);
+            color: var(--primary-teal);
+            border-radius: 5px 0 0 5px;
+        }
+
+        #custom-tooltip {
+            position: fixed;
+            background: rgba(0, 0, 0, 0.85);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            pointer-events: none;
+            display: none;
+            z-index: 1000;
+            white-space: nowrap;
+        }
+
+        .content-area {
+            flex-grow: 1;
+            background-color: var(--bg-light);
+            border-radius: 15px;
+            padding: 40px;
+            min-height: 400px; 
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .definition-item {
+            margin-bottom: 30px;
+            padding-left: 20px;
+            border-left: 5px solid var(--primary-teal);
+        }
+
+        .definition-item h3 {
+            color: var(--primary-teal);
+            margin: 0 0 10px 0;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .definition-item p {
+            color: var(--text-dark);
+            line-height: 1.6;
+            margin: 0;
+            text-align: justify;
+        }
+
+        .hidden { display: none; }
+
+        @keyframes slideUpFade {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-in .definition-item {
+            animation: slideUpFade 0.5s ease-out forwards;
+            opacity: 0; 
+        }
+
+        .animate-in .definition-item:nth-child(1) { animation-delay: 0.1s; }
+        .animate-in .definition-item:nth-child(2) { animation-delay: 0.2s; }
+        .animate-in .definition-item:nth-child(3) { animation-delay: 0.3s; }
+        .animate-in .definition-item:nth-child(4) { animation-delay: 0.4s; }
+        .animate-in .definition-item:nth-child(5) { animation-delay: 0.5s; }
+
+        @media (max-width: 768px) {
+            .glossary-body { flex-direction: column; }
+            .tabs-container { width: 100%; flex-direction: row; position: static; }
+            .tab-btn { flex: 1; border-bottom: none; border-right: 1px solid rgba(255,255,255,0.2); font-size: 1rem; }
+            .tab-btn.active { border-radius: 5px 5px 0 0; }
+        }
+    </style>
+</head>
+<body>
+
+<div id="custom-tooltip">No hay recursos por mostrar en esta sección</div>
+
+<div class="glossary-widget">
+    <div class="instruction-wrapper">
+        <div class="instruction-badge">
+            <span>👆</span> Haga Clic sobre cada botón para ampliar la información
+        </div>
+    </div>
+
+    <div class="glossary-header">
+        <h1>Glosario Unidad 1</h1>
+    </div>
+
+    <div class="glossary-body">
+        <div class="tabs-container">
+            <button class="tab-btn active" onclick="filterContent('A-G', this)">A – G</button>
+            <button class="tab-btn" onclick="filterContent('H-I', this)">H – I</button>
+            <button class="tab-btn" onclick="filterContent('M-S', this)">M – S</button>
+            <button class="tab-btn disabled" data-tooltip="Sin más términos">T – Z</button>
+        </div>
+
+        <div class="content-area">
+            <div class="content-group animate-in" id="group-A-G">
+                <div class="definition-item">
+                    <h3>Atributos de calidad</h3>
+                    <p>Aquellas características que todo proceso debe tener para lograr el nivel de calidad exigido para las estadísticas oficiales.</p>
+                </div>
+                <div class="definition-item">
+                    <h3>Auditor</h3>
+                    <p>Profesional encargado de evaluar la calidad observada frente a la calidad esperada a través de papeles de trabajo, donde se pueda registrar las evidencias encontradas en la auditoría.</p>
+                </div>
+                <div class="definition-item">
+                    <h3>Comité de auditoría</h3>
+                    <p>Son entidades de la institución que buscan apoyar el sistema de calidad de la institución, establecen estrategias de mejoramiento para evitar riesgos en la prestación de un servicio.</p>
+                </div>
+                <div class="definition-item">
+                    <h3>Evaluación de calidad</h3>
+                    <p>Seguimiento oportuno al cumplimiento de estándares en los procesos en la prestación de los servicios de salud.</p>
+                </div>
+                <div class="definition-item">
+                    <h3>Garantía de calidad</h3>
+                    <p>Hacer correctamente las cosas correctas, asegurar o proteger contra un riesgo, evitarlos o minimizarlos.</p>
+                </div>
+            </div>
+
+            <div class="content-group hidden" id="group-H-I">
+                <div class="definition-item">
+                    <h3>Herramientas de auditoría</h3>
+                    <p>Son técnicas, métodos y programas que ayudan a los auditores a recopilar, analizar y evaluar información para formar un juicio objetivo sobre procesos, controles, sistemas o estados financieros, mejorando la eficiencia y precisión, e identificando riesgos y mejoras.</p>
+                </div>
+                <div class="definition-item">
+                    <h3>Herramientas de calidad</h3>
+                    <p>Términos y métodos gráficos o estadísticos que ayudan a las organizaciones a identificar, analizar y resolver problemas en sus procesos, productos o servicios, buscando mejorar la satisfacción del cliente y la eficiencia operativa.</p>
+                </div>
+                <div class="definition-item">
+                    <h3>Indicador</h3>
+                    <p>Es una herramienta de calidad que me permite evaluar oportunamente los procesos de salud.</p>
+                </div>
+                <div class="definition-item">
+                    <h3>Instrumento</h3>
+                    <p>Es un objeto, herramienta o dispositivo utilizado para realizar una tarea, facilitar un trabajo, o lograr un fin específico; medio para conseguir un fin u objetivo.</p>
+                </div>
+                <div class="definition-item">
+                    <h3>Instrumentos para la recolección de datos</h3>
+                    <p>Medios que los investigadores utilizan para obtener información precisa y relevante sobre un tema específico, convirtiendo la realidad en datos útiles para análisis, como encuestas, entrevistas, cuestionarios, observación y análisis documental, fundamentales para tomar decisiones informadas.</p>
+                </div>
+            </div>
+
+            <div class="content-group hidden" id="group-M-S">
+                <div class="definition-item">
+                    <h3>Mejoramiento continuo</h3>
+                    <p>Es un proceso de seguimiento en la prestación de un servicio, con el fin detectar riesgos y falencias y corregirlas oportunamente a través de un plan de mejoramiento.</p>
+                </div>
+                <div class="definition-item">
+                    <h3>Sistema</h3>
+                    <p>Es un método organizado, planificado y continuo, puede ser para medir, monitorear y mejorar la calidad, con el fin de incrementar los beneficios y evitar riesgos para la población.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const tooltip = document.getElementById('custom-tooltip');
+    const disabledButtons = document.querySelectorAll('.tab-btn.disabled');
+
+    disabledButtons.forEach(btn => {
+        btn.addEventListener('mousemove', (e) => {
+            tooltip.style.display = 'block';
+            tooltip.style.left = (e.clientX + 15) + 'px';
+            tooltip.style.top = (e.clientY + 15) + 'px';
+            if(btn.getAttribute('data-tooltip')) {
+                tooltip.innerText = btn.getAttribute('data-tooltip');
+            }
+        });
+        btn.addEventListener('mouseleave', () => {
+            tooltip.style.display = 'none';
+        });
+    });
+
+    function filterContent(groupId, btnElement) {
+        if (btnElement.classList.contains('disabled')) return;
+
+        const groups = document.querySelectorAll('.content-group');
+        groups.forEach(group => {
+            group.classList.add('hidden');
+            group.classList.remove('animate-in');
+        });
+
+        const selectedGroup = document.getElementById('group-' + groupId);
+        if (selectedGroup) {
+            selectedGroup.classList.remove('hidden');
+            void selectedGroup.offsetWidth; // Force Reflow
+            selectedGroup.classList.add('animate-in');
+        }
+
+        const buttons = document.querySelectorAll('.tab-btn');
+        buttons.forEach(btn => btn.classList.remove('active'));
+        btnElement.classList.add('active');
+    }
+</script>
+
+</body>
+</html>
