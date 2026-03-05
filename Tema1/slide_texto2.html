@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-blue: #00779A;
+      --text-color: #1e293b;
+      --transition-speed: 0.6s;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: #f8fafc;
+      /* Un fondo ligero para contraste */
+    }
+
+    /* CONTENEDOR PRINCIPAL RESPONSIVO */
+    .slider-wrapper {
+      position: relative;
+      width: 95%;
+      max-width: 900px;
+      /* Cambiado a min-height para que crezca con el contenido */
+      min-height: 450px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border-radius: 24px;
+      padding: 40px 20px;
+      /* Más padding vertical */
+      background: white;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    }
+
+    .slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 0 40px;
+      /* Espacio para que el texto no toque los botones */
+      box-sizing: border-box;
+    }
+
+    .slide.active {
+      display: flex;
+    }
+
+    /* TÍTULO RESPONSIVO */
+    .slide h2 {
+      font-size: clamp(22px, 5vw, 36px);
+      /* Tamaño fluido */
+      font-weight: 900;
+      color: var(--primary-blue);
+      margin-bottom: 20px;
+      text-align: center;
+      animation: slideInRight var(--transition-speed) forwards;
+    }
+
+    /* PÁRRAFO RESPONSIVO */
+    .slide p {
+      font-size: clamp(14px, 4vw, 17px);
+      /* Tamaño fluido */
+      line-height: 1.6;
+      color: var(--text-color);
+      max-width: 90%;
+      text-align: justify;
+      margin: 0 auto;
+      animation: slideInLeft var(--transition-speed) forwards;
+    }
+
+    /* ANIMACIONES */
+    @keyframes slideInRight {
+      from {
+        transform: translateX(50px);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideInLeft {
+      from {
+        transform: translateX(-50px);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    /* BOTONES DE NAVEGACIÓN */
+    .nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(37, 99, 235, 0.1);
+      border: none;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      z-index: 10;
+      color: var(--primary-blue);
+    }
+
+    .nav-btn:hover {
+      background: var(--primary-blue);
+      color: white;
+    }
+
+    .prev {
+      left: 5px;
+    }
+
+    .next {
+      right: 5px;
+    }
+
+    .nav-btn svg {
+      width: 24px;
+      height: 24px;
+      fill: currentColor;
+    }
+
+    /* MEDIA QUERIES PARA MÓVILES */
+    @media (max-width: 600px) {
+      .slider-wrapper {
+        min-height: 500px;
+        /* Más espacio para texto largo en pantallas angostas */
+        padding: 60px 10px;
+      }
+
+      .slide {
+        padding: 0 15px;
+      }
+
+      .nav-btn {
+        width: 35px;
+        height: 35px;
+        top: auto;
+        bottom: 10px;
+        /* Movemos botones abajo en móvil para no estorbar */
+        transform: none;
+      }
+
+      .prev {
+        left: 30%;
+      }
+
+      .next {
+        right: 30%;
+      }
+
+      .slide p {
+        text-align: left;
+        /* La justificación suele verse mal en pantallas muy angostas */
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="slider-wrapper">
+    <button class="nav-btn prev" onclick="changeSlide(-1)">
+      <svg viewBox="0 0 24 24">
+        <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+      </svg>
+    </button>
+    <button class="nav-btn next" onclick="changeSlide(1)">
+      <svg viewBox="0 0 24 24">
+        <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
+      </svg>
+    </button>
+
+    <div class="slide active">
+      <h2>Sistemas cerrados de salud en Colombia</h2>
+      <p>En Colombia, un sistema cerrado de salud se refiere generalmente a la atención que un asegurado recibe dentro
+        de la red prestadora de servicios (IPS) de su propia EPS (Entidad Promotora de Salud), con médicos, laboratorios
+        y hospitales específicos de esa red, limitando la elección externa; aunque el sistema general es mixto, las EPS
+        funcionan con redes definidas (cerradas en la práctica) para sus afiliados, con ejemplos claros en los sistemas
+        de administración de medicamentos como los CSTDs para seguridad del paciente, y en la gestión de información con
+        sistemas como RIPS o RUAF, que manejan datos controlados internamente. (Montaño, 2022)</p>
+    </div>
+
+    <div class="slide">
+      <h2>Ejemplos de "Sistemas Cerrados" en el Contexto Colombiano</h2>
+      <p><strong style="color: var(--primary-blue);">Redes de IPS de las EPS: Funcionalidad: </strong>Cuando una EPS define una lista de hospitales, clínicas y especialistas
+      (IPS) donde sus afiliados deben (o pueden) ser atendidos. Si el afiliado se sale de esa red sin autorización, no
+      hay cobertura o hay mayores costos.</p>
+      <p><strong style="color: var(--primary-blue);">Ejemplo: </strong>Un afiliado a la EPS "Salud Total" es atendido en la Clínica "Nueva EPS" y realiza sus exámenes en el Laboratorio "Salud Total Lab", ambos partes de su red.</p>
+      
+    </div>
+  </div>
+
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+
+    function changeSlide(direction) {
+      // Ocultar actual
+      slides[currentSlide].classList.remove('active');
+      slides[currentSlide].style.display = 'none';
+
+      // Calcular siguiente
+      currentSlide = (currentSlide + direction + slides.length) % slides.length;
+
+      // Mostrar siguiente
+      slides[currentSlide].style.display = 'flex';
+      setTimeout(() => {
+        slides[currentSlide].classList.add('active');
+      }, 10);
+    }
+  </script>
+
+</body>
+
+</html>
