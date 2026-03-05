@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-blue: #2563eb;
+      --text-color: #1e293b;
+      --transition-speed: 0.6s;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Lato', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: transparent; /* Sin color de fondo como pediste */
+    }
+
+    /* CONTENEDOR PRINCIPAL */
+    .slider-wrapper {
+      position: relative;
+      /* 👇 Espacio de 30px laterales */
+      width: calc(90% - 60px); 
+      max-width: 900px;
+      height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      /* 👇 Esquinas redondeadas */
+      border-radius: 24px; 
+      padding: 20px;
+    }
+
+    .slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .slide.active {
+      display: flex;
+    }
+
+    /* TEXTO CON ANIMACIÓN LATERAL */
+    .slide h2 {
+      font-size: 36px;
+      font-weight: 900;
+      color: var(--primary-blue);
+      margin-bottom: 20px;
+      animation: slideInRight var(--transition-speed) forwards;
+    }
+
+    .slide p {
+      font-size: 18px;
+      line-height: 1.6;
+      color: var(--text-color);
+      max-width: 80%;
+      animation: slideInLeft var(--transition-speed) forwards;
+    }
+
+    /* ANIMACIONES */
+    @keyframes slideInRight {
+      from { transform: translateX(100px); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    @keyframes slideInLeft {
+      from { transform: translateX(-100px); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    /* FLECHAS DE NAVEGACIÓN */
+    .nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(37, 99, 235, 0.1);
+      border: none;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      z-index: 10;
+      color: var(--primary-blue);
+    }
+
+    .nav-btn:hover {
+      background: var(--primary-blue);
+      color: white;
+    }
+
+    .prev { left: 10px; }
+    .next { right: 10px; }
+
+    .nav-btn svg {
+      width: 24px;
+      height: 24px;
+      fill: currentColor;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="slider-wrapper">
+    <button class="nav-btn prev" onclick="changeSlide(-1)">
+      <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+    </button>
+    <button class="nav-btn next" onclick="changeSlide(1)">
+      <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+    </button>
+
+    <div class="slide active">
+      <h2>Abiertos</h2>
+      <p>Son aquellos en donde se tiene acceso a la información de la atención en salud que se está brindando al paciente, o sea se realiza durante el periodo que el paciente se encuentra en la institución de salud.</p>
+    </div>
+
+    <div class="slide">
+      <h2>Cerrados</h2>
+      <p>Corresponde a la evaluación de la calidad de la atención prestada una vez que el paciente ha sido dado de alta.</p>
+    </div>
+  </div>
+
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+
+    function changeSlide(direction) {
+      // Quitar clase activa actual
+      slides[currentSlide].style.display = 'none';
+      slides[currentSlide].classList.remove('active');
+
+      // Calcular siguiente índice
+      currentSlide = (currentSlide + direction + slides.length) % slides.length;
+
+      // Mostrar nuevo slide con animación
+      slides[currentSlide].style.display = 'flex';
+      slides[currentSlide].classList.add('active');
+    }
+  </script>
+
+</body>
+</html>
