@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-blue: #00779A;
+      --text-color: #1e293b;
+      --transition-speed: 0.6s;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: #f8fafc;
+    }
+
+    .slider-wrapper {
+      position: relative;
+      width: 95%;
+      max-width: 900px;
+      min-height: 500px;
+      /* Aumentado un poco para las viñetas */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border-radius: 24px;
+      padding: 40px 20px;
+      background: white;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    }
+
+    .slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 0 50px;
+      box-sizing: border-box;
+    }
+
+    .slide.active {
+      display: flex;
+    }
+
+    .slide h2 {
+      font-size: clamp(22px, 5vw, 36px);
+      font-weight: 900;
+      color: var(--primary-blue);
+      margin-bottom: 20px;
+      text-align: center;
+      animation: slideInRight var(--transition-speed) forwards;
+    }
+
+    .slide p,
+    .slide ul {
+      font-size: clamp(14px, 4vw, 16px);
+      line-height: 1.6;
+      color: var(--text-color);
+      max-width: 95%;
+      animation: slideInLeft var(--transition-speed) forwards;
+    }
+
+    /* Estilo para las viñetas personalizadas */
+    .slide ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 15px;
+    }
+
+    .slide ul li {
+      margin-bottom: 10px;
+      display: flex;
+      align-items: flex-start;
+      text-align: justify;
+    }
+
+    .slide ul li::before {
+      content: "◆";
+      color: var(--primary-blue);
+      margin-right: 12px;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    @keyframes slideInRight {
+      from {
+        transform: translateX(50px);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideInLeft {
+      from {
+        transform: translateX(-50px);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    .nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0, 119, 154, 0.1);
+      border: none;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      z-index: 10;
+      color: var(--primary-blue);
+    }
+
+    .nav-btn:hover {
+      background: var(--primary-blue);
+      color: white;
+    }
+
+    .prev {
+      left: 10px;
+    }
+
+    .next {
+      right: 10px;
+    }
+
+    .nav-btn svg {
+      width: 24px;
+      height: 24px;
+      fill: currentColor;
+    }
+
+    @media (max-width: 600px) {
+      .slider-wrapper {
+        min-height: 600px;
+        padding: 60px 15px;
+      }
+
+      .slide {
+        padding: 0 20px;
+      }
+
+      .nav-btn {
+        bottom: 15px;
+        top: auto;
+        transform: none;
+      }
+
+      .prev {
+        left: 25%;
+      }
+
+      .next {
+        right: 25%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="slider-wrapper">
+    <button class="nav-btn prev" onclick="changeSlide(-1)">
+      <svg viewBox="0 0 24 24">
+        <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+      </svg>
+    </button>
+    <button class="nav-btn next" onclick="changeSlide(1)">
+      <svg viewBox="0 0 24 24">
+        <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
+      </svg>
+    </button>
+
+    <div class="slide active">
+      <h2>Beneficios de la Auditoría Sistémica</h2>
+      <ul>
+        <li>Permite identificar problemas estructurales y no solo síntomas aislados.</li>
+        <li>Fomenta la resiliencia y adaptabilidad de la organización.</li>
+        <li>Asegura que las mejoras en un área no perjudiquen a otras.</li>
+        <li>Proporciona una evaluación más profunda y un valor agregado al negocio, yendo más allá de la simple
+          inspección. (García, 2023).</li>
+        <li>Una auditoría sistémica es una fotografía de una empresa que muestra el modo exacto en que se producen los
+          sistemas y los pasos exactos que deben ejecutarse con respecto a estos. Existen muchos sistemas dentro de una
+          empresa y todos necesitan trabajar bien juntos. (Lambent, 2019)</li>
+      </ul>
+    </div>
+
+    <div class="slide">
+      <h2></h2>
+      <p>Es importante resaltar que la auditoría sistémica es un procedimiento exhaustivo y detallado para evaluar y
+        aclarar el funcionamiento de los sistemas de negocios. Es como una fotografía de una empresa. Está diseñada para
+        encontrar puntos de influencia para el cambio: los lugares en los que es posible obtener el mayor cambio
+        sostenible con el menor esfuerzo.
+
+        Sin una auditoría sistémica, se arriesga a tener que llevar a cabo soluciones a corto plazo mientras que el
+        rendimiento empresarial sigue disminuyendo. Una auditoría sistémica es una fotografía de una empresa que muestra
+        el modo exacto en que se producen los sistemas y los pasos exactos que deben ejecutarse con respecto a estos.
+        (Lambent, 2019)</p>
+      <p><strong style="color: var(--primary-blue);">Ejemplo Práctico:</strong> Un afiliado que utiliza exclusivamente
+        los laboratorios y centros de especialistas vinculados a su red primaria para garantizar el pago directo entre
+        entidades.</p>
+    </div>
+  </div>
+
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+
+    function changeSlide(direction) {
+      slides[currentSlide].classList.remove('active');
+      slides[currentSlide].style.display = 'none';
+
+      currentSlide = (currentSlide + direction + slides.length) % slides.length;
+
+      slides[currentSlide].style.display = 'flex';
+      setTimeout(() => {
+        slides[currentSlide].classList.add('active');
+      }, 10);
+    }
+  </script>
+
+</body>
+
+</html>
