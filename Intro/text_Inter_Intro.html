@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contenido Unidad Dos</title>
     <style>
@@ -13,8 +13,12 @@
             --container-bg: #fdfdfd;
         }
 
-        body {
+        /* Se aplica Poppins a todo el documento */
+        * {
             font-family: 'Poppins', sans-serif;
+        }
+
+        body {
             background-color: #ececec;
             margin: 0;
             display: flex;
@@ -64,6 +68,7 @@
         }
 
         h2 {
+            font-weight: 600; /* Peso semi-bold de Poppins */
             color: var(--text-color);
             margin-top: 0;
             font-size: 1.8rem;
@@ -73,6 +78,7 @@
         }
 
         p {
+            font-weight: 400; /* Peso regular de Poppins */
             color: var(--text-color);
             line-height: 1.8;
             font-size: 1.1rem;
@@ -86,6 +92,7 @@
         }
 
         li {
+            font-weight: 300; /* Peso ligero de Poppins */
             margin-bottom: 20px;
             line-height: 1.7;
             font-size: 1.05rem;
@@ -123,6 +130,7 @@
         }
 
         .btn {
+            font-weight: 500;
             background: var(--text-color);
             color: white;
             border: none;
@@ -138,6 +146,7 @@
         }
 
         .counter {
+            font-weight: 400;
             font-size: 0.85rem;
             color: #777;
             letter-spacing: 2px;
@@ -193,7 +202,6 @@
         
         counter.innerText = `${index + 1} / ${slides.length}`;
 
-        // Reiniciar animaciones de las viñetas
         const items = slides[index].querySelectorAll('li');
         items.forEach(li => {
             li.style.animation = 'none';
@@ -204,5 +212,7 @@
 </script>
 
 </body>
+</html>
 
 </html>
+
