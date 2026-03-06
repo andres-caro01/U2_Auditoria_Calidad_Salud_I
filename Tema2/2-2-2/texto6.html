@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #00779A;
+            --text-color: #1e293b;
+            --transition-speed: 0.5s;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #f1f5f9;
+        }
+
+        .slider-wrapper {
+            position: relative;
+            width: 95%;
+            max-width: 850px;
+            height: 550px;
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .slide-container {
+            flex: 1;
+            position: relative;
+        }
+
+        .slide {
+            position: absolute;
+            inset: 0;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            padding: 40px 60px;
+            box-sizing: border-box;
+            opacity: 0;
+            transition: opacity var(--transition-speed) ease;
+        }
+
+        .slide.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        /* Animaciones de contenido */
+        .slide.active h2 {
+            animation: slideUp 0.6s ease forwards;
+        }
+
+        .slide.active p {
+            animation: slideUp 0.6s ease forwards 0.2s;
+            opacity: 0;
+        }
+
+        .slide.active ul {
+            animation: slideUp 0.6s ease forwards 0.4s;
+            opacity: 0;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .slide h2 {
+            font-size: 28px;
+            font-weight: 900;
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+        }
+
+        .slide p {
+            font-size: 17px;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .slide ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .slide ul li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+            font-size: 15px;
+        }
+
+        .slide ul li::before {
+            content: "◆";
+            color: var(--primary-blue);
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+
+        /* Controles y Indicador */
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background: #fafafa;
+        }
+
+        .nav-btn {
+            background: white;
+            border: 2px solid var(--primary-blue);
+            color: var(--primary-blue);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
+            z-index: 10;
+        }
+
+        .nav-btn:hover {
+            background: var(--primary-blue);
+            color: white;
+        }
+
+        .slide-indicator {
+            font-weight: 700;
+            color: #64748b;
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 600px) {
+            .slider-wrapper {
+                height: 650px;
+            }
+
+            .slide {
+                padding: 30px 25px;
+            }
+
+            .slide h2 {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="slider-wrapper">
+        <div class="slide-container" id="slide-container">
+
+            <div class="slide active">
+                <h2>Hoja de Recolección de Datos y Estratificación: Organizan la información.</h2>
+                <p>Es una herramienta de calidad que combina un formulario estructurado (hoja de datos o verificación)
+                    para registrar datos de forma ordenada con una técnica (estratificación) para clasificarlos en
+                    subgrupos (estratos) y así analizar patrones, causas de problemas y tomar decisiones efectivas,
+                    pasando de datos generales a información específica y accionable, útil en procesos productivos y de
+                    mejora. (Álvarez H. , 2024)</p>
+            </div>
+
+
+            <div class="slide">
+                <ul>
+                    <h2>Hoja de Recolección de Datos (Hoja de verificación / Chequeo)</h2>
+                    <p><strong>Qué es: </strong>Un formulario predefinido para recopilar datos de manera sistemática y
+                        visual, registrando la frecuencia de eventos, defectos o causas.</p>
+                    <p><strong>Para qué sirve: </strong>Organizar información sobre variables, defectos, tareas, o la
+                        ocurrencia de problemas, facilitando el análisis posterior.</p>
+                    <p><strong>Cómo se diseña: </strong>Incluye campos para identificar el origen de los datos (fecha,
+                        máquina, turno, operador) y un formato para totalizar la información recolectada</p>
+                </ul>
+
+            </div>
+
+
+            <div class="slide">
+
+                <ul>
+                    <h2>Estratificación</h2>
+                    <p><strong>Qué es: </strong>Técnica estadística que divide un conjunto de datos en grupos más
+                        pequeños y
+                        homogéneos (estratos) para identificar patrones que no son visibles en los datos generales.</p>
+                    <p><strong>Para qué sirve: </strong>Separar y comparar datos de diferentes fuentes o categorías (ej.
+                        turnos, máquinas, proveedores) para entender qué factor influye más en un problema o proceso.
+                    </p>
+                    <p><strong>Cómo se aplica: </strong>Se usa junto con la hoja de datos para analizar por separado los
+                        registros de cada estrato, llevando a una comprensión más profunda y decisiones más precisas.
+                    </p>
+                    <p><strong>Analizar: </strong>Usar esta información para identificar causas raíz y mejorar el
+                        proceso,
+                        pasando de un "qué" general a un "por qué" específico.</p>
+                </ul>
+
+            </div>
+
+            <div class="slide">
+
+                <ul>
+                    <h2>Aplicación Conjunta</h2>
+                    <p><strong>Diseñar la Hoja de Datos: </strong>Crear un formulario que incluya categorías para
+                        estratificar (ej. columnas para 'Día', 'Máquina', 'Tipo de Defecto').</p>
+                    <p><strong>Recolectar: </strong>Llenar la hoja registrando los datos en las categorías
+                        correspondientes.
+                    </p>
+                    <p><strong>Estratificar: </strong>Analizar los datos agrupados por cada categoría (estrato) para ver
+                        dónde ocurren más problemas (ej. más defectos en la Máquina A, Turno 2).</p>
+
+                </ul>
+
+            </div>
+
+            <div class="slide">
+
+                <ul>
+                    <h2>Hoja de Recolección de Datos (Check Sheet)</h2>
+                    <p>Es un formato prediseñado (físico o digital) para recopilar datos de forma estructurada y en
+                        tiempo
+                        real. Su objetivo es facilitar el registro de hechos de manera que puedan ser analizados
+                        fácilmente
+                        después. (Álvarez H. , 2024)</p>
+                    <p><strong>Tipos comunes:</strong></p>
+                    <p><strong>De registro de defectos: </strong> Para contar cuántas veces ocurre un problema
+                        específico.</p>
+                    <p><strong>De localización de defectos: </strong> Un diagrama del producto donde se marca dónde
+                        ocurren las fallas.</p>
+                    <p><strong>De causas de defectos: </strong> Clasifica los problemas según la máquina, el operador o
+                        el turno.</p>
+                    <p><strong>Utilidad: </strong>Evita depender de la memoria y permite identificar patrones de
+                        frecuencia.</p>
+                </ul>
+
+            </div>
+
+        </div>
+
+        <div class="controls">
+            <button class="nav-btn" onclick="changeSlide(-1)">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+            </button>
+
+            <div class="slide-indicator" id="indicator">1 / 5</div>
+
+            <button class="nav-btn" onclick="changeSlide(1)">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const indicator = document.getElementById('indicator');
+
+        function updateIndicator() {
+            indicator.innerText = `${currentSlide + 1} / ${slides.length}`;
+        }
+
+        function changeSlide(direction) {
+            // Quitar clase activa del slide actual
+            slides[currentSlide].classList.remove('active');
+
+            // Calcular nuevo índice
+            currentSlide = (currentSlide + direction + slides.length) % slides.length;
+
+            // Pequeño timeout para reiniciar animaciones CSS
+            setTimeout(() => {
+                slides.forEach(s => s.classList.remove('active'));
+                slides[currentSlide].classList.add('active');
+                updateIndicator();
+            }, 50);
+        }
+    </script>
+
+</body>
+
+</html>
