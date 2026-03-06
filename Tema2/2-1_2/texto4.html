@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Dimensiones de Calidad</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins', sans-serif;
+}
+
+body{
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:100vh;
+background-color:#ffffff;
+background-image: radial-gradient(#dcdcdc 1px, transparent 1px);
+background-size:20px 20px;
+padding:40px;
+}
+
+/* CONTENEDOR */
+
+.container{
+width:950px;
+}
+
+/* BOTONES */
+
+.tabs{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:12px;
+margin-bottom:20px;
+}
+
+.tab-btn{
+
+height:70px;
+padding:10px;
+
+border:none;
+border-radius:12px;
+
+background:#00779A;
+color:white;
+
+cursor:pointer;
+
+font-weight:600;
+font-size:15px;
+
+text-transform:uppercase;
+
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+
+transition:background-color .25s ease, box-shadow .25s ease;
+
+box-shadow:0 4px 10px rgba(0,0,0,0.15);
+
+}
+
+.tab-btn:hover{
+background:#004F67;
+box-shadow:0 5px 12px rgba(0,0,0,0.18);
+}
+
+.tab-btn.active{
+background:#002530;
+cursor:default;
+box-shadow:0 6px 15px rgba(0,0,0,0.25);
+}
+
+/* CAJA DE TEXTO */
+
+.content-box{
+
+background:#F7F7F7;
+
+border-radius:14px;
+
+padding:30px;
+
+box-shadow:0 8px 20px rgba(0,0,0,0.15);
+
+min-height:220px;
+
+position:relative;
+
+overflow:hidden;
+
+}
+
+/* CONTENIDO */
+
+.tab-content{
+display:none;
+animation:fadeSlide .6s ease;
+}
+
+.tab-content.active{
+display:block;
+}
+
+/* TITULOS */
+
+h2{
+color:#00779A;
+margin-bottom:10px;
+font-weight:600;
+}
+
+h3{
+margin-top:15px;
+color:#00779A;
+font-weight:600;
+}
+
+/* TEXTO */
+
+p{
+margin-top:8px;
+line-height:1.6;
+color:#333;
+}
+
+ul{
+margin-top:10px;
+padding-left:20px;
+}
+
+li{
+margin-bottom:6px;
+}
+
+/* ANIMACION */
+
+@keyframes fadeSlide{
+
+from{
+opacity:0;
+transform:translateY(20px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="tabs">
+
+<button class="tab-btn active" onclick="openTab(event,'t1')">
+CENTRADO EN EL PACIENTE
+</button>
+
+<button class="tab-btn" onclick="openTab(event,'t2')">
+OPORTUNO
+</button>
+
+<button class="tab-btn" onclick="openTab(event,'t3')">
+EQUITATIVO
+</button>
+
+<button class="tab-btn" onclick="openTab(event,'t4')">
+ACCESIBILIDAD
+</button>
+
+</div>
+
+<div class="content-box">
+
+<div id="t1" class="tab-content active">
+
+<h2>Centrado en el paciente</h2>
+
+<p>
+Hace referencia a la facultad de los servicios de salud para ofrecer atención médica personalizada, adaptada a las necesidades y preferencias individuales de los pacientes. En este sentido, el bienestar de los pacientes debe orientar todas las decisiones clínicas.
+</p>
+
+<h3>Ejemplos:</h3>
+
+<ul>
+<li>Nivel de satisfacción de los pacientes con la atención recibida.</li>
+<li>Respeto a la dignidad y derechos de los pacientes.</li>
+<li>Calidad de la comunicación entre el personal médico y el paciente. Tomado de: https://global.tiffin.edu/noticias/dimensiones-para-evaluar-la-calidad-de-los-servicios-de-salud</li>
+</ul>
+
+</div>
+
+<div id="t2" class="tab-content">
+
+<h2>Oportuno</h2>
+
+<p>
+En este caso, se refiere a una atención médica proporcionada en el momento conveniente, reduciendo los tiempos de espera y minimizando los retrasos en la atención. Esto independientemente de la patología o del tipo de tratamiento que se requiera.
+</p>
+
+<h3>Ejemplos:</h3>
+
+<ul>
+<li>Tiempo promedio de atención en urgencias.</li>
+<li>Intervalo entre la detección de una enfermedad y el inicio del tratamiento.</li>
+<li>Cumplimiento de tiempos de referencia y contrarreferencia.</li>
+</ul>
+
+</div>
+
+<div id="t3" class="tab-content">
+
+<h2>Equitativo</h2>
+
+<p>
+Esto significa que la atención médica debe ser ofrecida a todos los pacientes de manera imparcial, sin importar su origen social, económico, religioso o cultural.
+</p>
+
+<h3>Ejemplos:</h3>
+
+<ul>
+<li>Diferencias en el acceso y uso de servicios según nivel socioeconómico.</li>
+<li>Cobertura de salud en poblaciones vulnerables.</li>
+<li>Proporción de atención brindada a grupos minoritarios o con discapacidad.</li>
+</ul>
+
+</div>
+
+<div id="t4" class="tab-content">
+
+<h2>Accesibilidad</h2>
+
+<p>
+Hace referencia a que todas las personas puedan acceder a los servicios de salud cuando los necesiten, sin barreras económicas, geográficas o culturales. Para ello es necesario que la atención esté disponible en todos los niveles de asistencia, garantizando infraestructuras adecuadas y suficiente personal capacitado. Igualmente, la accesibilidad no solo se refiere a la disponibilidad física de los servicios, sino también a su asequibilidad, asegurando que los costos no sean un obstáculo para recibir atención.
+</p>
+
+<h3>Ejemplos:</h3>
+
+<ul>
+<li>Tiempo de espera para consultas, exámenes y cirugías.</li>
+<li>Cobertura de servicios de salud según ubicación geográfica.</li>
+<li>Infraestructura adecuada.</li>
+<li>Disponibilidad de personal de salud y tecnología médica.</li>
+</ul>
+
+</div>
+
+</div>
+</div>
+
+<script>
+
+function openTab(evt,tabId){
+
+const buttons=document.querySelectorAll(".tab-btn");
+const contents=document.querySelectorAll(".tab-content");
+
+buttons.forEach(btn=>btn.classList.remove("active"));
+contents.forEach(c=>c.classList.remove("active"));
+
+evt.currentTarget.classList.add("active");
+document.getElementById(tabId).classList.add("active");
+
+}
+
+</script>
+
+</body>
+</html>
