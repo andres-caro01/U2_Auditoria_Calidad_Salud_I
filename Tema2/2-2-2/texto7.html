@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Herramientas de Evaluación</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins', sans-serif;
+}
+
+body{
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:100vh;
+background-color:#ffffff;
+background-image: radial-gradient(#dcdcdc 1px, transparent 1px);
+background-size:20px 20px;
+padding:40px;
+}
+
+/* CONTENEDOR */
+
+.container{
+width:950px;
+}
+
+/* BOTONES */
+
+.tabs{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:12px;
+margin-bottom:20px;
+}
+
+.tab-btn{
+
+height:70px;
+padding:10px;
+
+border:none;
+border-radius:12px;
+
+background:#00779A;
+color:white;
+
+cursor:pointer;
+
+font-weight:600;
+font-size:15px;
+
+text-transform:uppercase;
+
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+
+transition:background-color .25s ease, box-shadow .25s ease;
+
+box-shadow:0 4px 10px rgba(0,0,0,0.15);
+
+}
+
+.tab-btn:hover{
+background:#004F67;
+box-shadow:0 5px 12px rgba(0,0,0,0.18);
+}
+
+.tab-btn.active{
+background:#002530;
+cursor:default;
+box-shadow:0 6px 15px rgba(0,0,0,0.25);
+}
+
+/* CAJA DE TEXTO */
+
+.content-box{
+
+background:#F7F7F7;
+
+border-radius:14px;
+
+padding:30px;
+
+box-shadow:0 8px 20px rgba(0,0,0,0.15);
+
+min-height:220px;
+
+position:relative;
+
+overflow:hidden;
+
+}
+
+/* CONTENIDO */
+
+.tab-content{
+display:none;
+animation:fadeSlide .6s ease;
+}
+
+.tab-content.active{
+display:block;
+}
+
+/* TITULOS */
+
+h2{
+color:#00779A;
+margin-bottom:10px;
+font-weight:600;
+}
+
+/* TEXTO */
+
+p{
+margin-top:8px;
+line-height:1.6;
+color:#333;
+}
+
+/* ANIMACION */
+
+@keyframes fadeSlide{
+
+from{
+opacity:0;
+transform:translateY(20px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="tabs">
+
+<button class="tab-btn active" onclick="openTab(event,'t1')">
+ENCUESTA
+</button>
+
+<button class="tab-btn" onclick="openTab(event,'t2')">
+INDICADORES
+</button>
+
+<button class="tab-btn" onclick="openTab(event,'t3')">
+TASA
+</button>
+
+</div>
+
+<div class="content-box">
+
+<div id="t1" class="tab-content active">
+
+<h2>La encuesta</h2>
+
+<p>
+Es un procedimiento en la que se recopila información mediante un cuestionario previamente diseñado, sin modificar el entorno ni el fenómeno donde se recoge la información, con el fin de evaluar la satisfacción del usuario, ya sea para entregarlo en forma de informe, gráfica, tabla o escrita, se puede realizar mensualmente, trimestral, semestral o anualmente; de acuerdo con los resultados encontrados se establecen planes de mejora.
+</p>
+
+</div>
+
+<div id="t2" class="tab-content">
+
+<h2>Indicadores</h2>
+
+<p>
+Es una herramienta que permite evaluar los estándares de cumplimiento en la atención en salud, en los procesos de estructura, de proceso y resultado, se puede realizar a través de Tasas, razones y proporciones.
+</p>
+
+</div>
+
+<div id="t3" class="tab-content">
+
+<h2>Tasa</h2>
+
+<p>
+Es una medida de la frecuencia de un evento (como una enfermedad o muerte) en una población durante un tiempo específico, expresada como una fracción o porcentaje, lo que permite comparar riesgos entre grupos o momentos distintos, estandarizando los datos para una comprensión clara de la carga de enfermedad o el estado de salud de una comunidad. Se calculan dividiendo el número de eventos (numerador) entre el tamaño de la población expuesta (denominador).
+</p>
+
+</div>
+
+</div>
+</div>
+
+<script>
+
+function openTab(evt,tabId){
+
+const buttons=document.querySelectorAll(".tab-btn");
+const contents=document.querySelectorAll(".tab-content");
+
+buttons.forEach(btn=>btn.classList.remove("active"));
+contents.forEach(c=>c.classList.remove("active"));
+
+evt.currentTarget.classList.add("active");
+document.getElementById(tabId).classList.add("active");
+
+}
+
+</script>
+
+</body>
+</html>
