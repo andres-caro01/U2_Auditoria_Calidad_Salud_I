@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control de Procesos - Ultra Dark</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --accent-color: #7EABF5;
+            --bg-black: #000000; /* Fondo negro puro */
+            --card-dark: #002530; /* Fondo de tarjeta muy oscuro */
+            --text-main: #002530;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif !important;
+            background-color:(--bg-black);
+            color: var(--text-main);
+            overflow: hidden;
+        }
+
+        /* Gradientes extremadamente sutiles para no interferir con la letra */
+        .nebula {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: 
+                radial-gradient(circle at 10% 10%, rgba(0, 242, 255, 0.05) 0%, transparent 30%),
+                radial-gradient(circle at 90% 90%, rgba(0, 242, 255, 0.03) 0%, transparent 30%);
+            z-index: -2;
+        }
+
+        .reveal .slides {
+            text-align: left;
+        }
+
+        .reveal .slides section {
+            display: flex !important;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+        /* Tarjeta con mayor opacidad para máximo contraste */
+        .glass-card {
+            background: var(--card-dark);
+            border: 1px solid rgba(0, 242, 255, 0.15);
+            border-left: 3px solid var(--accent-color);
+            padding: 50px;
+            border-radius: 4px; /* Bordes más rectos para look más serio */
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 1);
+            width: 100%;
+            max-width: 900px;
+            position: relative;
+        }
+
+        .title-glow {
+            font-weight: 800;
+            color: var(--text-main);
+            text-shadow: 0 0 10px rgba(0, 242, 255, 0.2);
+            margin-bottom: 2.5rem;
+            width: 100%;
+            max-width: 900px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .custom-list li {
+            list-style: none;
+            position: relative;
+            margin-bottom: 1.2rem;
+            padding-left: 2rem;
+            font-weight: 300;
+            font-size: 1.25rem;
+            color: #e2e8f0;
+        }
+
+        .custom-list li::before {
+            content: '>';
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-weight: 800;
+        }
+
+        .card-p {
+            color: #cbd5e1;
+            font-weight: 300;
+            font-size: 1.25rem;
+            line-height: 1.8;
+        }
+
+        /* Contador Inferior */
+        #slide-counter {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+            font-size: 0.7rem;
+            letter-spacing: 5px;
+            color: rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 10px 30px;
+            background: #000000;
+        }
+
+        #slide-counter b {
+            color: var(--accent-color);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="nebula"></div>
+
+    <div class="reveal">
+        <div class="slides">
+            
+            <section data-transition="zoom">
+                <h2 class="title-glow text-3xl md:text-4xl">Las gráficas de control sirven para:</h2>
+                <div class="glass-card">
+                    <ul class="custom-list">
+                        <li>Diagnosticar el comportamiento de un proceso en el tiempo.</li>
+                        <li>Indicar si un proceso ha mejorado o ha empeorado.</li>
+                        <li>Permite identificar las dos fuentes de variación de un proceso</li>
+                        <li>Sirve como una herramienta de detección de problemas. (coursehero, 2021)</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section data-transition="zoom">
+                <h2 class="title-glow text-3xl md:text-4xl">¿Cómo puedo realizar estas gráficas?</h2>
+                <div class="glass-card">
+                    <p class="card-p mb-8">
+                        Habitualmente, en las empresas en que el uso de las gráficas de control está generalizado, se utiliza software estadístico adaptado a las necesidades de la empresa. Existen en el mercado numerosos programas informáticos que permiten realizar este tipo de gráficos, entre otros, de una forma automatizada.
+                    </p>
+                    <p class="card-p border-t border-white/10 pt-6 opacity-60 italic text-base">
+                        Pero, también es habitual encontrar a personas que realizan sus gráficas de control en el programa informático Excel. (Álvarez H. , 2024)
+                    </p>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <div id="slide-counter">
+        <b id="current">1</b> / <b id="total">2</b>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.js"></script>
+    <script>
+        Reveal.initialize({
+            center: true,
+            hash: true,
+            transition: 'zoom',
+            backgroundTransition: 'zoom',
+            controls: true,
+            progress: false
+        });
+
+        const currentEl = document.getElementById('current');
+        const totalEl = document.getElementById('total');
+
+        Reveal.on('slidechanged', event => {
+            currentEl.textContent = event.indexh + 1;
+        });
+        totalEl.textContent = Reveal.getTotalSlides();
+    </script>
+</body>
+</html>
