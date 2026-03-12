@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acordeón Interactivo - ¿Cómo Funciona?</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #f0f4f8;
+            --primary-blue: #006684;
+            --secondary-blue: #004d63;
+            --text-main: #333;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: var(--text-main);
+        }
+
+        .accordion-container {
+            width: 90%;
+            max-width: 600px;
+            background: rgba(255, 255, 255, 0.5);
+            padding: 30px;
+            border-radius: 30px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.05);
+        }
+
+        .main-title {
+            font-weight: 700;
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            color: #000;
+        }
+
+        .accordion-item {
+            margin-bottom: 15px;
+            border-radius: 15px;
+            overflow: hidden;
+            background: var(--white);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            transition: all 0.3s ease;
+        }
+
+        .accordion-header {
+            padding: 20px 25px;
+            background: var(--white);
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            position: relative;
+        }
+
+        .accordion-header:hover {
+            background: #f9f9f9;
+        }
+
+        /* El número al lado izquierdo */
+        .step-number {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary-blue);
+            margin-right: 20px;
+            min-width: 30px;
+        }
+
+        .step-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+            flex-grow: 1;
+        }
+
+        /* Icono de flecha animado */
+        .arrow-icon {
+            width: 20px;
+            height: 20px;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        /* Contenido oculto */
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0, 1, 0, 1);
+            background: #fafafa;
+        }
+
+        .content-inner {
+            padding: 0 25px 25px 75px; /* Alineado con el título */
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #555;
+            text-align: justify;
+        }
+
+        /* Estado Abierto */
+        .accordion-item.active {
+            box-shadow: 0 10px 25px rgba(0, 102, 132, 0.1);
+            transform: scale(1.02);
+        }
+
+        .accordion-item.active .accordion-content {
+            max-height: 500px;
+            transition: max-height 0.8s ease-in-out;
+        }
+
+        .accordion-item.active .arrow-icon {
+            transform: rotate(180deg);
+        }
+
+        .accordion-item.active .accordion-header {
+            color: var(--primary-blue);
+        }
+
+        .source-text {
+            font-weight: 600;
+            margin-top: 10px;
+            display: block;
+            color: #888;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="accordion-container">
+    <h1 class="main-title">¿Cómo Funciona?</h1>
+
+    <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span class="step-number">1</span>
+            <span class="step-title">Analizar</span>
+            <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                <path d="M6 9l6 6 6-6" />
+            </svg>
+        </div>
+        <div class="accordion-content">
+            <div class="content-inner">
+                Evaluar el rendimiento actual y métricas de procesos, productos o servicios.
+            </div>
+        </div>
+    </div>
+
+    <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span class="step-number">2</span>
+            <span class="step-title">Identificar</span>
+            <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                <path d="M6 9l6 6 6-6" />
+            </svg>
+        </div>
+        <div class="accordion-content">
+            <div class="content-inner">
+                Encontrar oportunidades de mejora, cuellos de botella o áreas de desperdicio.
+            </div>
+        </div>
+    </div>
+
+    <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span class="step-number">3</span>
+            <span class="step-title">Implementar</span>
+            <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                <path d="M6 9l6 6 6-6" />
+            </svg>
+        </div>
+        <div class="accordion-content">
+            <div class="content-inner">
+                Realizar cambios pequeños y graduales (o a veces significativos).
+            </div>
+        </div>
+    </div>
+
+    <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span class="step-number">4</span>
+            <span class="step-title">Medir y Repetir</span>
+            <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                <path d="M6 9l6 6 6-6" />
+            </svg>
+        </div>
+        <div class="accordion-content">
+            <div class="content-inner">
+                Verificar si los cambios logran los resultados esperados. Reiniciar el ciclo, buscando la siguiente oportunidad de mejora.
+                <span class="source-text">(Faizal, 2023)</span>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    function toggleAccordion(header) {
+        const item = header.parentElement;
+        const isActive = item.classList.contains('active');
+
+        // Cerrar todos los demás items para un efecto más limpio
+        document.querySelectorAll('.accordion-item').forEach(el => {
+            el.classList.remove('active');
+        });
+
+        // Si el que clickeamos no estaba activo, lo abrimos
+        if (!isActive) {
+            item.classList.add('active');
+        }
+    }
+</script>
+
+</body>
+</html>
