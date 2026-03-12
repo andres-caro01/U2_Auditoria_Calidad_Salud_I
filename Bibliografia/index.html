@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bibliografía Técnica - Gestión de Salud</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --accent-color: #004080; 
+            --accent-bright: #00ffff; 
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.15);
+            --text-main: #ffffff;
+            --text-dim: #b0b0b0;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            font-family: 'Inter', sans-serif;
+            background-color: #000810; 
+            color: var(--text-main);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+        }
+
+        /* --- FONDO ANIMADO AZUL --- */
+        .fluid-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            background: #000c18;
+            filter: blur(80px);
+        }
+
+        .fluid-layer {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.5;
+            mix-blend-mode: screen;
+            animation: fluidMove infinite alternate ease-in-out;
+        }
+
+        .layer-1 { background: radial-gradient(circle, var(--accent-color) 0%, rgba(0, 64, 128, 0) 70%); width: 90vw; height: 90vw; top: -20%; left: -20%; animation-duration: 25s; }
+        .layer-2 { background: radial-gradient(circle, #0066cc 0%, rgba(0, 102, 204, 0) 70%); width: 80vw; height: 80vw; bottom: -10%; right: -10%; animation-duration: 30s; animation-delay: -5s; }
+        .layer-3 { background: radial-gradient(circle, #00ffff 0%, rgba(0, 255, 255, 0) 60%); width: 70vw; height: 60vw; top: 30%; right: 20%; animation-duration: 35s; animation-delay: -10s; opacity: 0.3; }
+
+        @keyframes fluidMove {
+            0% { transform: translate(0, 0) rotate(0deg) scale(1); }
+            100% { transform: translate(10%, -10%) rotate(90deg) scale(1.1); }
+        }
+
+        /* --- TÍTULO --- */
+        .main-header {
+            text-align: center;
+            padding: 60px 20px 20px 20px;
+            z-index: 1;
+            animation: fadeInDown 1s ease;
+        }
+
+        .main-header h1 {
+            font-weight: 300;
+            font-size: 2.5rem;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            margin: 0;
+            background: linear-gradient(to right, #fff, var(--accent-bright));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .main-header .line {
+            width: 60px;
+            height: 4px;
+            background: var(--accent-bright);
+            margin: 20px auto;
+            border-radius: 2px;
+        }
+
+        /* REJILLA */
+        .reference-grid {
+            display: grid;
+            width: 90vw;
+            max-width: 1400px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+            padding: 40px 0 80px 0;
+            z-index: 1;
+        }
+
+        /* TARJETAS */
+        .card {
+            text-decoration: none;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            min-height: 160px;
+            opacity: 0;
+            animation: fadeIn 0.6s ease forwards;
+        }
+
+        a.card:hover {
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--accent-bright);
+            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 255, 255, 0.2);
+        }
+
+        .author-tag {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--accent-bright);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 12px;
+        }
+
+        .title {
+            font-size: 1.05rem;
+            line-height: 1.4;
+            margin-bottom: 15px;
+            color: var(--text-main);
+            font-weight: 400;
+        }
+
+        .footer-info {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 12px;
+            margin-top: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        a.card .footer-info::after {
+            content: 'ABRIR ENLACE →';
+            font-size: 0.65rem;
+            font-weight: 700;
+            color: var(--accent-bright);
+            opacity: 0.7;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Staggered animation */
+        .card:nth-child(n) { animation-delay: calc(0.05s * var(--i)); }
+
+    </style>
+</head>
+<body>
+
+    <div class="fluid-background">
+        <div class="fluid-layer layer-1"></div>
+        <div class="fluid-layer layer-2"></div>
+        <div class="fluid-layer layer-3"></div>
+    </div>
+
+    <header class="main-header">
+        <h1>Bibliografía</h1>
+        <div class="line"></div>
+    </header>
+
+    <main class="reference-grid">
+        <div class="card" style="--i:1">
+            <div class="author-tag">Álvarez, H. (2023)</div>
+            <div class="title">Calidad y Auditoría en salud</div>
+            <div class="footer-info">Bogotá: Ecoe Ediciones</div>
+        </div>
+
+        <div class="card" style="--i:2">
+            <div class="author-tag">Álvarez, H. (2024)</div>
+            <div class="title">Instrumentos de auditoría médica</div>
+            <div class="footer-info">Bogotá: Ecoe Ediciones</div>
+        </div>
+
+        <a href="https://repository.ces.edu.co/items/49f3caef-2bc6-405c-b0eb-21caf94282cb" target="_blank" class="card" style="--i:3" rel="noopener noreferrer">
+            <div class="author-tag">Ardila, B. Á., & otros (2025)</div>
+            <div class="title">Metodología para auditoría de sistemas de gestión en salud</div>
+            <div class="footer-info">Repositorio CES</div>
+        </a>
+
+        <a href="https://repository.ces.edu.co/bitstream/handle/10946/6403/audutoria_medica_y_clinica.pdf?isAllowed=y&sequence=2" target="_blank" class="card" style="--i:4" rel="noopener noreferrer">
+            <div class="author-tag">Barros, Llanos & Palacios (s.f.)</div>
+            <div class="title">Auditoría Medico - Clínica</div>
+            <div class="footer-info">Documento PDF (CES)</div>
+        </a>
+
+        <a href="https://www.coursehero.com/file/83452695/Diagrama-de-control-de-procesos-y-de-disperciondocx/" target="_blank" class="card" style="--i:5" rel="noopener noreferrer">
+            <div class="author-tag">Coursehero (2021)</div>
+            <div class="title">Diagrama de control de procesos y de dispersión</div>
+            <div class="footer-info">Recurso Académico</div>
+        </a>
+
+        <a href="https://dharmacon.net/2023/07/05/dominando-diagrama-de-control-mejorando-la-gestion-de-la-calidad-con-el-pmbok/" target="_blank" class="card" style="--i:6" rel="noopener noreferrer">
+            <div class="author-tag">Dharmacon (2023)</div>
+            <div class="title">Dominando los diagramas de control (PMBOK)</div>
+            <div class="footer-info">Blog Especializado</div>
+        </a>
+
+        <div class="card" style="--i:7">
+            <div class="author-tag">Faizal, Á. (2023)</div>
+            <div class="title">Gerencia de Hospitales e Instituciones de Salud</div>
+            <div class="footer-info">Bogotá: Ecoe Ediciones</div>
+        </div>
+
+        <div class="card" style="--i:8">
+            <div class="author-tag">García, M. (2023)</div>
+            <div class="title">Gerencia de Procesos para Organización y Control Interno</div>
+            <div class="footer-info">Bogotá: Ecoe Ediciones</div>
+        </div>
+
+        <a href="https://www.scielosp.org/pdf/spm/v53s2/10.pdf" target="_blank" class="card" style="--i:9" rel="noopener noreferrer">
+            <div class="author-tag">Guerrero, R., & otros (2011)</div>
+            <div class="title">Sistema de salud en Colombia</div>
+            <div class="footer-info">Artículo Scielo</div>
+        </a>
+
+        <div class="card" style="--i:10">
+            <div class="author-tag">Isaza, S. (2023)</div>
+            <div class="title">Garantía de la Calidad en Salud, Cómo Organizar una empresa</div>
+            <div class="footer-info">Bogotá: Ediciones de la U</div>
+        </div>
+
+        <a href="https://www.lambent.com/es/como-funciona-la-auditoria-sistemica/" target="_blank" class="card" style="--i:11" rel="noopener noreferrer">
+            <div class="author-tag">Lambent (2019)</div>
+            <div class="title">Cómo funciona la Auditoría Sistémica</div>
+            <div class="footer-info">Portal Lambent</div>
+        </a>
+
+        <div class="card" style="--i:12">
+            <div class="author-tag">Mejía, G. (2024)</div>
+            <div class="title">Auditoría Médica Para la Garantía de Calidad en Salud</div>
+            <div class="footer-info">Bogotá: Ecoe Ediciones</div>
+        </div>
+
+        <div class="card" style="--i:13">
+            <div class="author-tag">Montaño, H. (2022)</div>
+            <div class="title">Auditoría de las áreas de las empresas</div>
+            <div class="footer-info">Bogotá: Ediciones de la U</div>
+        </div>
+
+        <div class="card" style="--i:14">
+            <div class="author-tag">Tafani, R. (2023)</div>
+            <div class="title">Medicina Privada y Salud Pública</div>
+            <div class="footer-info">Buenos Aires: Brujas</div>
+        </div>
+
+        <div class="card" style="--i:15">
+            <div class="author-tag">Thomas, H. (2023)</div>
+            <div class="title">Cómo Gerenciar la transformación hacia la calidad total</div>
+            <div class="footer-info">México: McGraw Hill</div>
+        </div>
+
+        <a href="https://todorespondio.es/cuales-son-los-elementos-de-una-grafica" target="_blank" class="card" style="--i:16" rel="noopener noreferrer">
+            <div class="author-tag">Todorespondio (2024)</div>
+            <div class="title">Cuáles son los elementos de una gráfica</div>
+            <div class="footer-info">Guía Práctica</div>
+        </a>
+
+        <a href="https://prezi.com/lnbpyrere-oh/teoria-de-sistemas/" target="_blank" class="card" style="--i:17" rel="noopener noreferrer">
+            <div class="author-tag">Vásquez, P. A. (2015)</div>
+            <div class="title">Teoría de sistemas</div>
+            <div class="footer-info">Presentación Prezi</div>
+        </a>
+    </main>
+
+</body>
+</html>
