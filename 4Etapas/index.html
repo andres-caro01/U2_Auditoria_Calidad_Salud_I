@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ciclo PHVA Interactivo - Espaciado</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-bg: #f0f7f9;
+            --glass-bg: rgba(255, 255, 255, 0.6);
+            --accent-color: #1a2a3a;
+            --text-color: #444;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--primary-bg);
+            /* Fondo con gradientes suaves para resaltar el vidrio */
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(173, 216, 230, 0.4) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(255, 255, 255, 0.8) 0px, transparent 50%);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: var(--text-color);
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1300px;
+            width: 100%;
+        }
+
+        .header-title {
+            text-align: center;
+            font-weight: 700;
+            font-size: 2.2rem;
+            margin-bottom: 60px; /* Más espacio bajo el título */
+            color: var(--accent-color);
+            letter-spacing: 1px;
+        }
+
+        .cycle-grid {
+            display: grid;
+            /* Control estricto de separación: 40px de espacio entre tarjetas */
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px; 
+            padding: 20px;
+        }
+
+        .card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            padding: 35px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+        }
+
+        .card h2 {
+            font-weight: 600;
+            font-size: 1.3rem;
+            margin: 0 0 20px 0;
+            color: var(--accent-color);
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        /* Línea decorativa bajo el título */
+        .card h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: #add8e6;
+            border-radius: 2px;
+        }
+
+        .card p {
+            font-size: 0.92rem;
+            line-height: 1.7;
+            margin: 0;
+            text-align: left;
+            color: #555;
+        }
+
+        .source {
+            margin-top: auto; /* Empuja la cita al final */
+            padding-top: 20px;
+            font-weight: 500;
+            font-size: 0.8rem;
+            color: #888;
+        }
+
+        /* Animaciones suaves al cargar */
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card {
+            animation: slideUp 0.6s ease-out forwards;
+        }
+
+        @media (max-width: 600px) {
+            .cycle-grid { gap: 30px; }
+            .header-title { font-size: 1.6rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1 class="header-title">Ciclo de Calidad (PHVA)</h1>
+    
+    <div class="cycle-grid">
+        <div class="card" style="animation-delay: 0.1s;">
+            <div class="card-icon">📝</div>
+            <h2>Planificar (Plan)</h2>
+            <p>Se identifica cuáles son aquellas actividades de la organización susceptibles de mejora y se fijan los objetivos a alcanzar al respecto. La búsqueda de posibles mejoras se puede realizar con la participación de grupos de trabajo, escuchando las opiniones de los trabajadores, buscando nuevas tecnologías, entre otros procedimientos.</p>
+            <div class="source">(Thomas, 2023)</div>
+        </div>
+
+        <div class="card" style="animation-delay: 0.2s;">
+            <div class="card-icon">⚙️</div>
+            <h2>Hacer (Do)</h2>
+            <p>Se ejecutan los cambios necesarios para efectuar las mejoras requeridas. Es conveniente aplicar una prueba piloto a pequeña escala para determinar el funcionamiento antes de hacer cambios a gran escala.</p>
+        </div>
+
+        <div class="card" style="animation-delay: 0.3s;">
+            <div class="card-icon">🔍</div>
+            <h2>Verificar (Check)</h2>
+            <p>Una vez realizada la mejora, se procede a un período de prueba para verificar su buen funcionamiento. En caso que la mejora no cumpla con las expectativas iniciales se realiza modificaciones para ajustarla a los objetivos esperados.</p>
+        </div>
+
+        <div class="card" style="animation-delay: 0.4s;">
+            <div class="card-icon">🚀</div>
+            <h2>Actuar (Act)</h2>
+            <p>Luego del periodo de prueba se estudian los resultados y se comparan estos con el funcionamiento de las actividades antes de haber sido implantada la mejora. Si los resultados son satisfactorios se implantará la mejora en forma definitiva y a gran escala en la organización; pero si no lo son habrá que evaluar si se hará cambios o si se descarta la mejora.</p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
