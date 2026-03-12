@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body { font-family: 'Poppins', sans-serif; }
+        
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+        }
+        
+        .accordion-item.active {
+            border-color: #3b82f6;
+            background-color: #ffffff;
+            box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.1);
+        }
+
+        .accordion-item.active .accordion-content {
+            max-height: 1000px; /* Aumentado para textos largos */
+            padding-bottom: 1.5rem;
+            opacity: 1;
+        }
+
+        .accordion-item.active .chevron {
+            transform: rotate(180deg);
+            color: #3b82f6;
+        }
+
+        .text-justify-custom {
+            text-align: justify;
+            text-justify: inter-word;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 min-h-screen flex flex-col items-center justify-center p-6 py-12">
+
+    <div class="max-w-3xl w-full relative pt-12">
+        
+        <div class="absolute top-0 right-0 flex items-center gap-2 text-blue-500/70 py-2 px-1">
+            <span class="text-[11px] uppercase tracking-wider font-semibold">Haz clic en cada título para ampliar la información</span>
+            <i data-lucide="info" class="w-3.5 h-3.5"></i>
+        </div>
+
+        <div class="space-y-3">
+            
+            <div class="accordion-item bg-white/80 backdrop-blur-sm border border-slate-200 rounded-2xl shadow-sm transition-all duration-300">
+                <button class="w-full flex items-center justify-between p-5 text-left focus:outline-none" onclick="toggleAccordion(this)">
+                    <span class="text-base font-semibold text-slate-700">1. Fase de planificación</span>
+                    <i data-lucide="chevron-down" class="chevron w-5 h-5 text-slate-400 transition-transform duration-300"></i>
+                </button>
+                <div class="accordion-content px-5 text-slate-600 text-sm text-justify-custom">
+                    En esta etapa se debe identificar y determinar los criterios con los cuales se va auditar.
+                </div>
+            </div>
+
+            <div class="accordion-item bg-white/80 backdrop-blur-sm border border-slate-200 rounded-2xl shadow-sm transition-all duration-300">
+                <button class="w-full flex items-center justify-between p-5 text-left focus:outline-none" onclick="toggleAccordion(this)">
+                    <span class="text-base font-semibold text-slate-700">2. Fase de Preparación</span>
+                    <i data-lucide="chevron-down" class="chevron w-5 h-5 text-slate-400 transition-transform duration-300"></i>
+                </button>
+                <div class="accordion-content px-5 text-slate-600 text-sm text-justify-custom">
+                    En esta etapa se debe analizar la documentación sobre la institución que se va auditar con el fin de conocerla de manera científica, identificar los diferentes aspectos y clasificarlos, con el fin de elaborar los instrumentos de recolección de información.
+                </div>
+            </div>
+
+            <div class="accordion-item bg-white/80 backdrop-blur-sm border border-slate-200 rounded-2xl shadow-sm transition-all duration-300">
+                <button class="w-full flex items-center justify-between p-5 text-left focus:outline-none" onclick="toggleAccordion(this)">
+                    <span class="text-base font-semibold text-slate-700">3. Fase de ejecución</span>
+                    <i data-lucide="chevron-down" class="chevron w-5 h-5 text-slate-400 transition-transform duration-300"></i>
+                </button>
+                <div class="accordion-content px-5 text-slate-600 text-sm text-justify-custom space-y-3">
+                    <p>Es la fase del desarrollo de la auditoría en dónde efectivamente se verifica el cumplimiento de la gestión de calidad.</p>
+                    <p><strong>Reunión de inicio:</strong> Se presenta el equipo auditor, el personal que va a realizar el acompañamiento en el proceso, se dan a conocer los objetivos de la auditoría, la fecha y hora de inicio.</p>
+                    <p>Realización de verificación de evidencias y documentación que soporten la auditoría. Se orienta a identificar objetivamente la lista de verificación o chequeo, sobre las personas, procesos, recursos físicos y documentación, según sea el objetivo y alcances de la auditoría.</p>
+                    <p><strong>Análisis y discusión de los resultados:</strong> Se realiza un análisis de lo encontrado en particular del no cumplimiento de lo esperado, en cuanto a los elementos de calidad. Se debe describir claramente la no conformidad analizada y sustentada con la evidencia encontrada e inmediatamente se debe identificar la propuesta de mejoramiento para ser discutida.</p>
+                    <p><strong>Reunión de cierre:</strong> En esta reunión, el auditor coordinador o líder debe explicar nuevamente los objetivos de la auditoría, los alcances, los criterios y todos aquellos elementos que considere de interés. A continuación, debe presentar los datos y las evidencias de forma precisa, justificando los hallazgos y evitando explicar las causas de estos. Se debe proceder a firmar los acuerdos sobre los hallazgos cuidando de identificar las fechas de cumplimiento. Deben exponerse con claridad las no conformidades y la solicitud de acciones correctivas y llegar a un consenso de estas con un tiempo identificado para poder verificar posteriormente su cumplimiento en una nueva auditoría.</p>
+                </div>
+            </div>
+
+            <div class="accordion-item bg-white/80 backdrop-blur-sm border border-slate-200 rounded-2xl shadow-sm transition-all duration-300">
+                <button class="w-full flex items-center justify-between p-5 text-left focus:outline-none" onclick="toggleAccordion(this)">
+                    <span class="text-base font-semibold text-slate-700">4. Fase de discusión</span>
+                    <i data-lucide="chevron-down" class="chevron w-5 h-5 text-slate-400 transition-transform duration-300"></i>
+                </button>
+                <div class="accordion-content px-5 text-slate-600 text-sm text-justify-custom">
+                    Los auditores se reúnen para el análisis y discusión de los resultados.
+                </div>
+            </div>
+
+            <div class="accordion-item bg-white/80 backdrop-blur-sm border border-slate-200 rounded-2xl shadow-sm transition-all duration-300">
+                <button class="w-full flex items-center justify-between p-5 text-left focus:outline-none" onclick="toggleAccordion(this)">
+                    <span class="text-base font-semibold text-slate-700">5. Fase informe</span>
+                    <i data-lucide="chevron-down" class="chevron w-5 h-5 text-slate-400 transition-transform duration-300"></i>
+                </button>
+                <div class="accordion-content px-5 text-slate-600 text-sm text-justify-custom">
+                    La reunión final o de cierre tiene como objetivo socializar lo encontrado en la auditoría para que la institución auditada presente las respectivas acciones correctivas. El informe debe contener los siguientes datos: Nombre de la entidad, departamento o proceso, fecha, lugar, personas claves contactadas, integrantes del equipo, asistentes a la reunión, resultados encontrados, No conformidades, acciones correctivas, conclusiones y anexos.
+                </div>
+            </div>
+
+            <div class="accordion-item bg-white/80 backdrop-blur-sm border border-slate-200 rounded-2xl shadow-sm transition-all duration-300">
+                <button class="w-full flex items-center justify-between p-5 text-left focus:outline-none" onclick="toggleAccordion(this)">
+                    <span class="text-base font-semibold text-slate-700">6. Fase de Seguimiento</span>
+                    <i data-lucide="chevron-down" class="chevron w-5 h-5 text-slate-400 transition-transform duration-300"></i>
+                </button>
+                <div class="accordion-content px-5 text-slate-600 text-sm text-justify-custom">
+                    Se establecen los mecanismos para verificar el cumplimiento de los acuerdos y aplicación de las conclusiones presentadas en el informe final. (Plan de mejoramiento, con fechas y evidencias que soporte las correcciones de las falencias encontradas) (Álvarez H. , 2023)
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        function toggleAccordion(element) {
+            const item = element.parentElement;
+            const isActive = item.classList.contains('active');
+            
+            document.querySelectorAll('.accordion-item').forEach(el => {
+                el.classList.remove('active');
+            });
+
+            if (!isActive) {
+                item.classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>
