@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gráfico de Control - Alta Visibilidad</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --neon-cyan: #00f2ff;
+            --pure-white: #ffffff;
+            --deep-navy: #020617;
+            --glass-card: rgba(15, 23, 42, 0.95);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif !important;
+            background: var(--deep-navy);
+            background: radial-gradient(circle at center, #0f172a 0%, #020617 100%);
+            color: var(--pure-white);
+            overflow: hidden;
+        }
+
+        /* Nebulosa de fondo optimizada */
+        .nebula {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(0, 242, 255, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 80% 80%, rgba(30, 64, 175, 0.1) 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        .reveal .slides section {
+            display: flex !important;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: left;
+        }
+
+        /* Tarjeta con contraste ultra alto */
+        .glass-card {
+            background: var(--glass-card);
+            border: 1px solid rgba(0, 242, 255, 0.3);
+            border-left: 5px solid var(--neon-cyan);
+            padding: 50px;
+            border-radius: 4px;
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.9);
+            width: 100%;
+            max-width: 900px;
+        }
+
+        /* Títulos en blanco puro con resplandor */
+        .title-glow {
+            font-weight: 800;
+            color: var(--pure-white);
+            text-shadow: 0 0 20px rgba(0, 242, 255, 0.5);
+            margin-bottom: 2rem;
+            width: 100%;
+            max-width: 900px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        /* Estilo de listas */
+        .custom-list li {
+            list-style: none;
+            position: relative;
+            margin-bottom: 1.5rem;
+            padding-left: 2.5rem;
+            font-weight: 400;
+            font-size: 1.25rem;
+            color: var(--pure-white); /* Texto en blanco para máxima lectura */
+        }
+
+        .custom-list li::before {
+            content: '>';
+            position: absolute;
+            left: 0;
+            color: var(--neon-cyan);
+            font-weight: 800;
+            text-shadow: 0 0 10px var(--neon-cyan);
+        }
+
+        .highlight {
+            color: var(--neon-cyan);
+            font-weight: 700;
+        }
+
+        .card-p {
+            color: var(--pure-white);
+            font-size: 1.25rem;
+            line-height: 1.8;
+            font-weight: 400;
+        }
+
+        /* Contador Inferior - Clarificado */
+        #slide-counter {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+            font-size: 0.85rem;
+            letter-spacing: 5px;
+            color: #ffffff;
+            border: 2px solid var(--neon-cyan);
+            padding: 12px 35px;
+            background: rgba(0, 0, 0, 0.9);
+            border-radius: 0;
+            font-weight: 600;
+            box-shadow: 0 0 15px rgba(0, 242, 255, 0.3);
+        }
+
+        #slide-counter b {
+            color: var(--neon-cyan);
+            text-shadow: 0 0 5px var(--neon-cyan);
+        }
+
+        /* INICIO DE ARREGLO DE FLECHAS */
+        /* Forzar el color y la opacidad de las flechas */
+        .reveal .controls button {
+            color: var(--neon-cyan) !important; /* Cian neón brillante */
+            opacity: 1 !important; /* Opacidad al 100% */
+        }
+
+        /* Quitar la opacidad reducida por defecto al pasar el ratón */
+        .reveal .controls button:hover {
+            opacity: 1 !important;
+        }
+
+        /* Elevar las flechas lateralmente */
+        /* Esto mueve las flechas de 'izquierda' y 'derecha' hacia arriba */
+        .reveal .controls .navigate-left,
+        .reveal .controls .navigate-right {
+            bottom: 50% !important; /* Las centra verticalmente en la pantalla */
+            transform: translateY(50%) !important;
+            height: 100px !important;
+        }
+
+        /* Posicionamiento específico */
+        .reveal .controls .navigate-left {
+            left: 20px !important;
+        }
+
+        .reveal .controls .navigate-right {
+            right: 20px !important;
+        }
+
+        /* Si usas flechas de 'arriba' o 'abajo', elevarlas también */
+        .reveal .controls .navigate-up,
+        .reveal .controls .navigate-down {
+            display: none !important; /* Desactivadas para centrarse en izquierda/derecha */
+        }
+        /* FIN DE ARREGLO DE FLECHAS */
+    </style>
+</head>
+<body>
+
+    <div class="nebula"></div>
+
+    <div class="reveal">
+        <div class="slides">
+            
+            <section data-transition="convex">
+                <h2 class="title-glow text-4xl">Gráfico de Control</h2>
+                <div class="glass-card">
+                    <p class="card-p">
+                        Es una herramienta visual que monitorea un proceso a lo largo del tiempo para determinar si está bajo control estadístico, detectando variaciones anormales (causas especiales) que indican problemas de calidad y requieren acción correctiva, a diferencia de la variación normal (causas comunes) del proceso. Permite identificar tendencias, cambios y puntos fuera de los límites predefinidos (línea central y límites superior/inferior) para asegurar la estabilidad y mejorar la calidad. Supervisa la variación del proceso a lo largo del tiempo, ayudando a los usuarios a identificar tendencias, cambios y cualquier proceso fuera de control que requiera atención. (Álvarez H. , 2024)
+                    </p>
+                </div>
+            </section>
+
+            <section data-transition="convex">
+                <h2 class="title-glow text-4xl">Componentes principales</h2>
+                <div class="glass-card">
+                    <ul class="custom-list">
+                        <li><span class="highlight">Puntos de datos:</span> Mediciones recopiladas a lo largo del tiempo.</li>
+                        <li><span class="highlight">Línea central:</span> Representa el promedio del proceso.</li>
+                        <li><span class="highlight">Límites de control:</span> Superior e inferior: Se calculan a partir de los datos y definen el rango de variación esperada.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section data-transition="convex">
+                <h2 class="title-glow text-4xl">¿Para qué sirve?</h2>
+                <div class="glass-card">
+                    <ul class="custom-list">
+                        <li><span class="highlight">Supervisar procesos:</span> Visualiza el comportamiento de un proceso continuamente.</li>
+                        <li><span class="highlight">Identificar causas de variación:</span> Distingue entre variaciones aleatorias (comunes) y variaciones que indican un problema (especiales).</li>
+                        <li><span class="highlight">Tomar decisiones:</span> Ayuda a saber cuándo intervenir para corregir o ajustar el proceso, evitando el sobre control.</li>
+                        <li><span class="highlight">Mejorar la calidad:</span> Permite una respuesta rápida y acciones preventivas para reducir defectos y costos.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section data-transition="convex">
+                <h2 class="title-glow text-4xl">Tipos comunes:</h2>
+                <div class="glass-card">
+                    <ul class="custom-list">
+                        <li><span class="highlight">Gráficos de variables:</span> Para datos continuos (longitud, temperatura).</li>
+                        <li><span class="highlight">Gráficos de atributos:</span> Para datos de conteo (número de defectos).</li>
+                    </ul>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <div id="slide-counter">
+        MONITOREO DE SISTEMA // <b id="current">1</b> DE <b id="total">4</b>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.js"></script>
+    <script>
+        Reveal.initialize({
+            center: true,
+            hash: true,
+            transition: 'convex', // Efecto carrusel
+            backgroundTransition: 'fade',
+            controls: true, // Activamos los controles para que se vean las flechas
+            controlsLayout: 'edges', // Las flechas se mueven a los bordes laterales
+            progress: false
+        });
+
+        const currentEl = document.getElementById('current');
+        const totalEl = document.getElementById('total');
+
+        Reveal.on('slidechanged', event => {
+            currentEl.textContent = event.indexh + 1;
+        });
+        totalEl.textContent = Reveal.getTotalSlides();
+    </script>
+</body>
+</html>
