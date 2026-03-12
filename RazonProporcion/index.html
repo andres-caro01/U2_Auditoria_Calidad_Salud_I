@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conceptos de Epidemiología</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #06b6d4;
+            --bg-dark: #0f172a;
+            --card-bg: rgba(255, 255, 255, 0.07);
+            --text: #f1f5f9;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0f172a, #1e1b4b, #0f172a);
+            background-size: 400% 400%;
+            animation: moveGradient 12s ease infinite;
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        @keyframes moveGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Instrucción ajustada para que no estorbe */
+        .instruction {
+            position: fixed;
+            top: 10px;
+            right: 20px;
+            font-size: 0.75rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.5);
+            z-index: 1100;
+            pointer-events: none;
+        }
+
+        /* Navegación con más espacio superior para bajar los botones */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            padding: 50px 0 20px 0; /* Aumentado el padding superior */
+            background: transparent;
+            z-index: 1000;
+        }
+
+        button {
+            font-family: 'Poppins', sans-serif;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 30px;
+            background: var(--card-bg);
+            color: white;
+            cursor: pointer;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        button:hover {
+            background: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(99, 102, 241, 0.4);
+        }
+
+        button.active {
+            background: var(--primary);
+            border-color: var(--secondary);
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
+        }
+
+        .content-wrapper {
+            margin-top: 160px; /* Ajustado para la nueva posición de los botones */
+            width: 90%;
+            max-width: 800px;
+            padding-bottom: 40px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 40px;
+            border-radius: 28px;
+            display: none;
+            animation: fadeInBlur 0.7s ease-out forwards;
+        }
+
+        .card.active {
+            display: block;
+        }
+
+        @keyframes fadeInBlur {
+            from { opacity: 0; transform: scale(0.98); filter: blur(10px); }
+            to { opacity: 1; transform: scale(1); filter: blur(0); }
+        }
+
+        h2 {
+            font-weight: 600;
+            margin-top: 0;
+            color: var(--secondary);
+            font-size: 1.6rem;
+        }
+
+        p {
+            line-height: 1.7;
+            font-weight: 300;
+            text-align: justify;
+            font-size: 1rem;
+            color: #e2e8f0;
+            margin: 0;
+        }
+
+        /* Ajustes para pantallas pequeñas */
+        @media (max-width: 600px) {
+            nav {
+                padding: 60px 10px 10px 10px;
+                gap: 10px;
+            }
+            button {
+                padding: 8px 15px;
+                font-size: 0.8rem;
+            }
+            .content-wrapper {
+                margin-top: 180px;
+            }
+            .instruction {
+                width: 100%;
+                text-align: center;
+                right: 0;
+                top: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="instruction">haga clic en los botones para ampliar la información.</div>
+
+    <nav>
+        <button onclick="showCard('razon')" id="btn-razon" class="active">a. Razón</button>
+        <button onclick="showCard('proporcion')" id="btn-proporcion">b. Proporción</button>
+    </nav>
+
+    <div class="content-wrapper">
+        <div id="razon" class="card active">
+            <h2>Razón</h2>
+            <p>Es una medida que compara la frecuencia de dos eventos o características en una población, expresada como un cociente donde el numerador no está incluido en el denominador, y se usa para ver cuántas veces ocurre un evento en relación con otro (ej. hombres por cada mujer, o casos de enfermedad por cada grupo de control). Se diferencia de proporciones y tasas porque no hay superposición entre las cantidades comparadas, y ayuda a entender asociaciones entre factores y resultados de salud, como en la Razón de Momios (Odds Ratio) (OR) para la asociación entre exposición y enfermedad. Razón de Momios (Odds Ratio - OR), usada en estudios de casos y controles, es el cociente de los productos cruzados en una tabla de 2x2: OR = (a*d) / (b*c), donde 'a' son los casos expuestos, 'd' los controles no expuestos, 'b' los casos no expuestos y 'c' los controles expuestos. Razón = A/B. (Tafani, 2023).</p>
+        </div>
+
+        <div id="proporcion" class="card">
+            <h2>Proporción</h2>
+            <p>La frecuencia de un evento en una población, usando la fórmula P = a/N (eventos/total). Para entender la prevalencia de una enfermedad o la opinión pública. N/D x 100 % ejemplo: Porcentaje de cancelación de cirugías:
+% de cancelación de cirugías: No. de cirugías canceladas en el periodo/No. de cirugías programadas. X100</p>
+        </div>
+    </div>
+
+    <script>
+        function showCard(id) {
+            document.querySelectorAll('.card').forEach(card => card.classList.remove('active'));
+            document.querySelectorAll('button').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            document.getElementById('btn-' + id).classList.add('active');
+            
+            // En móviles, al cambiar, hace un scroll pequeño para asegurar que se vea el inicio del texto
+            if(window.innerWidth < 600) {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+    </script>
+</body>
+</html>
