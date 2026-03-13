@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrusel Ishikawa - Gestión de Calidad</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #00d4ff;
+            --deep-blue: #0a192f;
+            --dark-bg: #03070d;
+            --glass: rgba(255, 255, 255, 0.03);
+            --border: rgba(0, 212, 255, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--dark-bg);
+            background-image: 
+                radial-gradient(circle at 0% 0%, #041020 0%, transparent 50%),
+                radial-gradient(circle at 100% 100%, #061a33 0%, transparent 50%);
+            color: #f0f0f0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        /* Instrucción en la esquina superior derecha */
+        .instruction {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            font-size: 0.85rem;
+            font-weight: 300;
+            color: var(--primary-blue);
+            opacity: 0.8;
+            border-right: 2px solid var(--primary-blue);
+            padding-right: 15px;
+            text-align: right;
+            max-width: 250px;
+            animation: fadeInRight 1s ease;
+        }
+
+        .carousel-container {
+            position: relative;
+            width: 85%;
+            max-width: 850px;
+            height: 480px;
+            z-index: 2;
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            padding: 50px;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .slide.active {
+            display: flex;
+            animation: slideUp 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        h2 {
+            color: var(--primary-blue);
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            letter-spacing: -0.5px;
+        }
+
+        .content-text {
+            line-height: 1.7;
+            font-size: 0.95rem;
+            color: #cbd5e1;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary-blue) transparent;
+        }
+
+        /* Controles */
+        .controls {
+            position: absolute;
+            bottom: -80px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-btn {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--primary-blue);
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .nav-btn:hover {
+            background: var(--primary-blue);
+            color: var(--dark-bg);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+        }
+
+        /* Indicadores */
+        .indicators {
+            display: flex;
+            gap: 12px;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            transition: 0.4s;
+        }
+
+        .dot.active {
+            background: var(--primary-blue);
+            width: 40px;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInRight {
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 0.8; transform: translateX(0); }
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .instruction {
+                top: 20px;
+                right: 20px;
+                font-size: 0.75rem;
+                max-width: 180px;
+            }
+            .slide { padding: 30px; }
+            h2 { font-size: 1.4rem; }
+            .carousel-container { height: 550px; width: 95%; }
+        }
+    </style>
+</head>
+<body>
+
+    <p class="instruction">Haga clic sobre las flechas para interactuar y ampliar la información.</p>
+
+    <div class="carousel-container">
+        <div class="carousel-inner">
+            <div class="slide active">
+                <h2>Diagrama de Ishikawa (Causa-Efecto)</h2>
+                <div class="content-text">
+                    El Diagrama de Ishikawa, también llamado de Causa-Efecto o Espina de Pescado, es una herramienta visual para identificar, explorar y mostrar gráficamente las posibles causas de un problema específico, organizándolas en categorías para facilitar su análisis y resolución, asemejándose a un esqueleto de pez, con el problema en la "cabeza" y las causas en las "espinas" principales y secundarias, siendo fundamental en la gestión de calidad y mejora continua. El nombre dado es en honor a su creador, Kaoru Ishikawa. (Álvarez H. , 2024)
+                </div>
+            </div>
+
+            <div class="slide">
+                <h2>¿Para qué sirve?</h2>
+                <div class="content-text">
+                    <strong>Identificar causas raíz: </strong>Ayuda a desglosar un problema complejo en sus factores contribuyentes, como personas, procesos, materiales, máquinas, métodos y medio ambiente (las 6M).<br><br>
+                    <strong>Mejorar la calidad: </strong>Permite visualizar relaciones entre causas y efectos, siendo útil en industrias, salud y servicios para optimizar procesos y resolver problemas multifactoriales.<br><br>
+                    <strong>Fomentar el trabajo en equipo: </strong>Facilita la discusión y el análisis grupal, involucrando a personal de distintos niveles para generar soluciones."
+                </div>
+            </div>
+
+            <div class="slide">
+                <h2>¿Cómo se elabora?</h2>
+                <div class="content-text">
+                    <strong>Define el efecto (problema): </strong>Escribe el problema principal a la derecha, como si fuera la "cabeza" del pez.<br><br>
+                    <strong>Traza la espina central: </strong>Dibuja una línea horizontal que se extienda desde el problema hacia la izquierda.<br><br>
+                    <strong>Identifica categorías principales: </strong>Dibuja ramas diagonales (espinas) que salgan de la línea central para las categorías generales de causas (ej. Personas, Procesos, Máquinas).<br><br>
+                    <strong>Detalla las causas: </strong>Añade sub-ramas a cada categoría para listar las causas específicas y sub-causas que contribuyen al problema.<br><br>
+                    <strong>Analiza y prioriza: </strong>Usa herramientas como los "5 Porqués" o el Principio de Pareto para encontrar las causas vitales y planificar acciones correctivas.
+                </div>
+            </div>
+
+            <div class="slide">
+                <h2>Ventajas de utilizar el Diagrama</h2>
+                <div class="content-text">
+                    El uso del Diagrama de Ishikawa aporta múltiples beneficios tangibles a las organizaciones, entre ellos:<br><br>
+                    Identificación clara y exhaustiva de las causas de un problema.<br>
+                    Mejora de la colaboración en el análisis y la resolución de problemas.<br>
+                    Toma de decisiones más fundamentada, lo que se traduce en acciones más eficaces.<br>
+                    Prevención de recurrencias.<br><br>
+                    En definitiva, el Diagrama de Ishikawa no sólo facilita la identificación de las causas de un problema y su resolución, sino que también fomenta una cultura de mejora continua. (Álvarez H. , 2024)
+                </div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button class="nav-btn" onclick="changeSlide(-1)">&#10094;</button>
+            <div class="indicators">
+                <div class="dot active"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+            <button class="nav-btn" onclick="changeSlide(1)">&#10095;</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.dot');
+
+        function changeSlide(direction) {
+            slides[currentSlide].classList.remove('active');
+            dots[currentSlide].classList.remove('active');
+            
+            currentSlide = (currentSlide + direction + slides.length) % slides.length;
+            
+            slides[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+        }
+
+        // Permitir clic en puntos
+        dots.forEach((dot, index) => {
+            dot.style.cursor = "pointer";
+            dot.onclick = () => {
+                slides[currentSlide].classList.remove('active');
+                dots[currentSlide].classList.remove('active');
+                currentSlide = index;
+                slides[currentSlide].classList.add('active');
+                dots[currentSlide].classList.add('active');
+            };
+        });
+    </script>
+</body>
+</html>
