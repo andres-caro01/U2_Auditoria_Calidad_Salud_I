@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrusel Pareto - Gestión de Calidad</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #00d4ff;
+            --deep-blue: #0a192f;
+            --dark-bg: #03070d;
+            --glass: rgba(255, 255, 255, 0.03);
+            --border: rgba(0, 212, 255, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--dark-bg);
+            background-image: 
+                radial-gradient(circle at 0% 0%, #041020 0%, transparent 50%),
+                radial-gradient(circle at 100% 100%, #061a33 0%, transparent 50%);
+            color: #f0f0f0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .instruction {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            font-size: 0.85rem;
+            font-weight: 300;
+            color: var(--primary-blue);
+            opacity: 0.8;
+            border-right: 2px solid var(--primary-blue);
+            padding-right: 15px;
+            text-align: right;
+            max-width: 250px;
+            animation: fadeInRight 1s ease;
+        }
+
+        .carousel-container {
+            position: relative;
+            width: 85%;
+            max-width: 850px;
+            height: 480px;
+            z-index: 2;
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            padding: 50px;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .slide.active {
+            display: flex;
+            animation: slideUp 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        h2 {
+            color: var(--primary-blue);
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            letter-spacing: -0.5px;
+        }
+
+        .content-text {
+            line-height: 1.7;
+            font-size: 0.95rem;
+            color: #cbd5e1;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary-blue) transparent;
+        }
+
+        .controls {
+            position: absolute;
+            bottom: -80px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-btn {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--primary-blue);
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .nav-btn:hover {
+            background: var(--primary-blue);
+            color: var(--dark-bg);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+        }
+
+        .indicators {
+            display: flex;
+            gap: 12px;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            transition: 0.4s;
+            cursor: pointer;
+        }
+
+        .dot.active {
+            background: var(--primary-blue);
+            width: 40px;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInRight {
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 0.8; transform: translateX(0); }
+        }
+
+        @media (max-width: 768px) {
+            .instruction {
+                top: 20px;
+                right: 20px;
+                font-size: 0.75rem;
+                max-width: 180px;
+            }
+            .slide { padding: 30px; }
+            h2 { font-size: 1.4rem; }
+            .carousel-container { height: 550px; width: 95%; }
+        }
+    </style>
+</head>
+<body>
+
+    <p class="instruction">Haga clic sobre las flechas para interactuar y ampliar la información.</p>
+
+    <div class="carousel-container">
+        <div class="carousel-inner">
+            <div class="slide active">
+                <h2>Diagrama de Pareto</h2>
+                <div class="content-text">
+                    Es una herramienta gráfica de control de calidad que organiza los factores que contribuyen a un problema en orden descendente (barras más altas a la izquierda), mostrando visualmente los "pocos vitales" que causan la mayoría de los efectos, basándose en el principio 80/20 (el 80% de los problemas proviene del 20% de las causas). Combina barras para frecuencias (izquierda) y una línea para el porcentaje acumulado (derecha) para facilitar la priorización de soluciones. (Álvarez H. , 2024)
+                </div>
+            </div>
+
+            <div class="slide">
+                <h2>Características principales:</h2>
+                <div class="content-text">
+                    <strong>Gráfico de barras y línea: </strong>Barras por frecuencia o coste, ordenadas de mayor a menor; línea de porcentaje acumulado.<br><br>
+                    <strong>Principio 80/20: </strong>Identifica que una minoría de causas (el 20%) genera la mayoría de los problemas (el 80%).<br><br>
+                    <strong>Priorización visual: </strong>Permite ver rápidamente qué problemas son más críticos y merecen atención inmediata.<br><br>
+                    <strong>Herramienta de calidad: </strong>Es una de las siete herramientas básicas de la calidad, usada en industrias y otros campos.
+                </div>
+            </div>
+
+            <div class="slide">
+                <h2>¿Para qué sirve?</h2>
+                <div class="content-text">
+                    <strong>Identificar causas raíz: </strong>Ayuda a enfocar los esfuerzos en las causas más significativas.<br><br>
+                    <strong>Toma de decisiones: </strong>Facilita priorizar acciones para maximizar resultados.<br><br>
+                    <strong>Mejora continua: </strong>Fundamental en la gestión de riesgos y la optimización de procesos.
+                </div>
+            </div>
+
+            <div class="slide">
+                <h2>Cómo se elabora:</h2>
+                <div class="content-text">
+                    <strong>Recolectar datos: </strong>Obtener datos sobre las diferentes causas de un problema (frecuencia, coste, etc.).<br>
+                    <strong>Ordenar datos: </strong>Listar las causas de mayor a menor frecuencia.<br>
+                    <strong>Calcular acumulados: </strong>Calcular el total y el porcentaje acumulado de cada causa.<br>
+                    <strong>Graficar: </strong>Eje izquierdo para la magnitud, eje derecho para el porcentaje (0-100%).<br>
+                    <strong>Dibujar: </strong>Barras para cada causa (de mayor a menor) y una línea para el acumulado.<br>
+                    <strong>Analizar: </strong>Identificar el punto donde el 80% de los problemas se acumula para tomar decisiones.<br><br>
+                    Aplicada al trabajo, significa que aproximadamente el 20 % de sus esfuerzos produce el 80 % de los resultados. Aprender a reconocer ese 20 % y luego enfocarse en él es la clave para optimizar su tiempo. (Álvarez H. , 2024)
+                </div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button class="nav-btn" onclick="changeSlide(-1)">&#10094;</button>
+            <div class="indicators">
+                <div class="dot active" onclick="jumpToSlide(0)"></div>
+                <div class="dot" onclick="jumpToSlide(1)"></div>
+                <div class="dot" onclick="jumpToSlide(2)"></div>
+                <div class="dot" onclick="jumpToSlide(3)"></div>
+            </div>
+            <button class="nav-btn" onclick="changeSlide(1)">&#10095;</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.dot');
+
+        function updateDisplay() {
+            slides.forEach((slide, index) => {
+                slide.classList.toggle('active', index === currentSlide);
+                dots[index].classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        function changeSlide(direction) {
+            currentSlide = (currentSlide + direction + slides.length) % slides.length;
+            updateDisplay();
+        }
+
+        function jumpToSlide(index) {
+            currentSlide = index;
+            updateDisplay();
+        }
+    </script>
+</body>
+</html>
