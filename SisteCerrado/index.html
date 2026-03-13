@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Presentación Interactiva - Sistemas de Salud</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/theme/white.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --r-main-font: 'Poppins', sans-serif;
+            --r-heading-font: 'Poppins', sans-serif;
+            --primary-blue: #005b7f;
+            --accent-blue: #0088be;
+            --glass-bg: rgba(255, 255, 255, 0.8);
+        }
+
+        .reveal .slides section {
+            text-align: left;
+            font-size: 24px;
+        }
+
+        h2 {
+            font-weight: 700 !important;
+            color: var(--primary-blue) !important;
+            margin-bottom: 40px !important;
+            border-left: 10px solid var(--primary-blue);
+            padding-left: 20px;
+        }
+
+        .welcome-title {
+            border: none !important;
+            padding: 0 !important;
+            text-align: center !important;
+            font-size: 3em !important;
+            background: linear-gradient(45deg, var(--primary-blue), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px !important;
+        }
+
+        .instruction-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 91, 127, 0.2);
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .label { color: var(--primary-blue); font-weight: 700; }
+        
+        .restart-btn {
+            background-color: var(--primary-blue);
+            color: white !important;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            border: none;
+            font-family: 'Poppins', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .restart-btn:hover {
+            background-color: var(--accent-blue);
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(0, 136, 190, 0.3);
+        }
+
+        .content-card:hover {
+            background: rgba(0, 91, 127, 0.02);
+            border-radius: 12px;
+            transition: 0.3s;
+        }
+
+        ul { list-style-type: none !important; margin-left: 0 !important; }
+        li { margin-bottom: 15px !important; position: relative; padding-left: 25px; }
+        li::before { content: "•"; color: var(--primary-blue); position: absolute; left: 0; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+
+            <section data-transition="fade">
+                <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%;">
+                    <h1 class="welcome-title fragment fade-down">Bienvenido</h1>
+                    <div class="instruction-card fragment fade-up">
+                        <p style="font-weight: 600; color: var(--primary-blue); margin-bottom: 20px;">Instrucciones de navegación:</p>
+                        <div style="text-align: left; display: inline-block;">
+                            <p>⌨️ Usa las <strong>flechas del teclado</strong> (izquierda/derecha).</p>
+                            <p>🖱️ Haz <strong>clic</strong> en la pantalla para avanzar elementos.</p>
+                            <p>📱 En móviles, <strong>desliza lateralmente</strong> para cambiar de slide.</p>
+                        </div>
+                        <p style="margin-top: 30px; font-size: 0.8em; opacity: 0.7;">Toca o presiona cualquier tecla para comenzar</p>
+                    </div>
+                </div>
+            </section>
+
+            <section data-transition="slide-in fade-out">
+                <h2>Sistemas de Administración de Medicamentos (CSTD)</h2>
+                <div class="content-card fragment fade-right" data-fragment-index="1">
+                    <p><span class="label">Funcionalidad:</span> Dispositivos como los Closed System Transfer Devices (CSTDs) que evitan la exposición de personal y pacientes a fármacos peligrosos, manteniendo el sistema de preparación y administración cerrado y estéril.</p>
+                </div>
+                <div class="content-card fragment fade-right" data-fragment-index="2">
+                    <p><span class="label">Ejemplo:</span> Un hospital usando aisladores y CSTD para preparar quimioterapias, sin abrir el circuito con el exterior para evitar contaminación.</p>
+                </div>
+            </section>
+
+            <section data-transition="slide-in fade-out">
+                <h2>Sistemas de Información Sanitaria (Internos)</h2>
+                <div class="fragment fade-in" data-fragment-index="1">
+                    <p><span class="label">Funcionalidad:</span> Bases de datos y plataformas de gestión que operan de forma controlada para un propósito específico, no abiertos al público general.</p>
+                </div>
+                <div class="fragment fade-in" data-fragment-index="2" style="margin-top: 20px;">
+                    <p><span class="label">Ejemplos:</span></p>
+                    <ul>
+                        <li class="fragment fade-left"><strong>RUAF (Registro Único de Afiliados):</strong> Maneja datos de afiliación al SGSSS.</li>
+                        <li class="fragment fade-left"><strong>RIPS (Registro Individual de Prestación de Servicios):</strong> Recopila información detallada de los servicios prestados.</li>
+                        <li class="fragment fade-left"><strong>SISMED:</strong> Sistema de información de precios de medicamentos. (Montaño, 2022)</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section data-transition="zoom" style="text-align: center;">
+                <h2 style="border:none; padding:0; text-align:center;">Contenido Finalizado</h2>
+                <p class="fragment fade-in" style="margin-bottom: 50px;">¿Deseas volver a revisar las diapositivas?</p>
+                <button class="restart-btn fragment fade-up" onclick="Reveal.slide(0)">
+                    Volver a iniciar
+                </button>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            controls: true,
+            progress: true,
+            center: true,
+            transition: 'slide',
+            backgroundTransition: 'fade'
+        });
+    </script>
+</body>
+</html>
