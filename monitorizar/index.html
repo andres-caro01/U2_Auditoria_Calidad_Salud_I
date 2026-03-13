@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard de Herramientas de Calidad</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #020617;
+            --primary: #0ea5e9;
+            --secondary: #38bdf8;
+            --accent: #00d4ff;
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(14, 165, 233, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(0, 212, 255, 0.1) 0%, transparent 40%);
+            color: #f8fafc;
+            min-height: 100vh;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .instruction {
+            font-size: 0.9rem;
+            color: var(--secondary);
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .category-card {
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 30px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(14, 165, 233, 0.2);
+        }
+
+        .category-card h2 {
+            font-size: 1.4rem;
+            color: var(--accent);
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .category-card h2::before {
+            content: '';
+            width: 4px;
+            height: 24px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        .item-list {
+            list-style: none;
+        }
+
+        .item {
+            margin-bottom: 18px;
+            padding: 12px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.02);
+            border-left: 2px solid transparent;
+            transition: 0.3s;
+        }
+
+        .item:hover {
+            background: rgba(14, 165, 233, 0.05);
+            border-left-color: var(--primary);
+            padding-left: 20px;
+        }
+
+        .item strong {
+            display: block;
+            color: #fff;
+            font-size: 0.95rem;
+            margin-bottom: 4px;
+        }
+
+        .item span {
+            font-size: 0.85rem;
+            color: #94a3b8;
+            line-height: 1.5;
+            display: block;
+        }
+
+        .footer-note {
+            margin-top: 40px;
+            font-size: 0.75rem;
+            color: #475569;
+        }
+
+        /* Animaciones */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .category-card {
+            animation: fadeIn 0.8s ease backwards;
+        }
+
+        .category-card:nth-child(2) { animation-delay: 0.2s; }
+        .category-card:nth-child(3) { animation-delay: 0.4s; }
+
+        @media (max-width: 768px) {
+            .grid-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <h1>Gestión de Calidad y Salud</h1>
+        <p class="instruction">Pase el cursor sobre los elementos para explorar los detalles</p>
+    </header>
+
+    <main class="grid-container">
+        <section class="category-card">
+            <h2>Herramientas Gráficas y Estadísticas (Las 7 Básicas)</h2>
+            <div class="item-list">
+                <div class="item">
+                    <strong>Diagrama de Pareto:</strong>
+                    <span>Prioriza problemas identificando las causas más frecuentes.</span>
+                </div>
+                <div class="item">
+                    <strong>Diagrama de Ishikawa (Causa-Efecto):</strong>
+                    <span>Analiza causas raíz de problemas.</span>
+                </div>
+                <div class="item">
+                    <strong>Gráfico de Control:</strong>
+                    <span>Monitorea procesos a lo largo del tiempo para detectar desviaciones.</span>
+                </div>
+                <div class="item">
+                    <strong>Histograma y Diagrama de Dispersión:</strong>
+                    <span>Visualizan datos y correlaciones.</span>
+                </div>
+                <div class="item">
+                    <strong>Hoja de Recolección de Datos y Estratificación:</strong>
+                    <span>Organizan la información.</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="category-card">
+            <h2>Sistemas de Información y Registros</h2>
+            <div class="item-list">
+                <div class="item">
+                    <strong>Registros Médicos Electrónicos (RME):</strong>
+                    <span>Mejoran la gestión y continuidad de la atención.</span>
+                </div>
+                <div class="item">
+                    <strong>OASIS (Home Health Care):</strong>
+                    <span>Para evaluación de calidad en atención domiciliaria.</span>
+                </div>
+                <div class="item">
+                    <strong>MDS (Minimum Data Set):</strong>
+                    <span>Para residencias de ancianos.</span>
+                </div>
+                <div class="item">
+                    <strong>OSCAR (Online Survey Certification and Reporting):</strong>
+                    <span>Para residencias y atención domiciliaria.</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="category-card">
+            <h2>Indicadores y Marcos de Referencia</h2>
+            <div class="item-list">
+                <div class="item">
+                    <strong>Indicadores Trazadores:</strong>
+                    <span>Agrupados en dominios (seguridad, efectividad, experiencia, gestión).</span>
+                </div>
+                <div class="item">
+                    <strong>Cuadro de Mando Integral:</strong>
+                    <span>Para gestionar y monitorear el desempeño organizacional.</span>
+                </div>
+                <div class="item">
+                    <strong>Dominios de Calidad IOM:</strong>
+                    <span>Seguro, efectivo, centrado en el paciente, eficiente, oportuno y equitativo. (Álvarez H. , 2024)</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer-note">
+        Adaptación digital de Herramientas de Calidad en Salud
+    </footer>
+
+</body>
+</html>
