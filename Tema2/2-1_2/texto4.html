@@ -1,287 +1,355 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dimensiones de Calidad</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
 
-<title>Dimensiones de Calidad</title>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #ffffff;
+            background-image: radial-gradient(#dcdcdc 1px, transparent 1px);
+            background-size: 20px 20px;
+            padding: 40px;
+            position: relative;
+            /* Para posicionar la instrucción absoluta respecto al body */
+        }
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        /* INSTRUCCIÓN SUPERIOR DERECHA */
+        .instruction-text {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            font-size: 14px;
+            color: #00779A;
+            font-weight: 500;
+            border-right: 3px solid #00779A;
+            padding-right: 10px;
+        }
 
-<style>
+        /* CONTENEDOR */
+        .container {
+            width: 950px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* Centra los hijos horizontalmente */
+        }
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins', sans-serif;
-}
+        /* BOTONES CENTRADOS */
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            /* Centra los botones */
+            gap: 12px;
+            margin-bottom: 25px;
+            max-width: 900px;
+        }
 
-body{
-display:flex;
-justify-content:center;
-align-items:center;
-min-height:100vh;
-background-color:#ffffff;
-background-image: radial-gradient(#dcdcdc 1px, transparent 1px);
-background-size:20px 20px;
-padding:40px;
-}
+        .tab-btn {
+            width: 210px;
+            /* Ancho fijo para mantener simetría */
+            height: 70px;
+            padding: 10px;
+            border: none;
+            border-radius: 12px;
+            background: #00779A;
+            color: white;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            transition: background-color .25s ease, box-shadow .25s ease, transform 0.2s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
 
-/* CONTENEDOR */
+        .tab-btn:hover {
+            background: #004F67;
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.18);
+            transform: translateY(-2px);
+        }
 
-.container{
-width:950px;
-}
+        .tab-btn.active {
+            background: #002530;
+            cursor: default;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+            transform: translateY(0);
+        }
 
-/* BOTONES */
+        /* CAJA DE TEXTO */
+        .content-box {
+            width: 100%;
+            background: #F7F7F7;
+            border-radius: 14px;
+            padding: 35px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+            min-height: 280px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #eee;
+        }
 
-.tabs{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:12px;
-margin-bottom:20px;
-}
+        /* CONTENIDO */
+        .tab-content {
+            display: none;
+            animation: fadeSlide .6s ease;
+        }
 
-.tab-btn{
+        .tab-content.active {
+            display: block;
+        }
 
-height:70px;
-padding:10px;
+        /* TITULOS */
+        h2 {
+            color: #00779A;
+            margin-bottom: 10px;
+            font-weight: 600;
+            font-size: 24px;
+        }
 
-border:none;
-border-radius:12px;
+        h3 {
+            margin-top: 15px;
+            color: #00779A;
+            font-weight: 600;
+        }
 
-background:#00779A;
-color:white;
+        /* TEXTO */
+        p {
+            margin-top: 8px;
+            line-height: 1.6;
+            color: #333;
+            text-align: justify;
+        }
 
-cursor:pointer;
+        ul {
+            margin-top: 10px;
+            padding-left: 20px;
+        }
 
-font-weight:600;
-font-size:15px;
+        li {
+            margin-bottom: 6px;
+            color: #444;
+        }
 
-text-transform:uppercase;
+        /* ANIMACION */
+        @keyframes fadeSlide {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
 
-display:flex;
-align-items:center;
-justify-content:center;
-text-align:center;
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-transition:background-color .25s ease, box-shadow .25s ease;
+        /* RESPONSIVO */
+        @media (max-width: 768px) {
+            .instruction-text {
+                position: static;
+                margin-bottom: 20px;
+                text-align: center;
+                border-right: none;
+                border-bottom: 2px solid #00779A;
+                padding-bottom: 5px;
+            }
 
-box-shadow:0 4px 10px rgba(0,0,0,0.15);
-
-}
-
-.tab-btn:hover{
-background:#004F67;
-box-shadow:0 5px 12px rgba(0,0,0,0.18);
-}
-
-.tab-btn.active{
-background:#002530;
-cursor:default;
-box-shadow:0 6px 15px rgba(0,0,0,0.25);
-}
-
-/* CAJA DE TEXTO */
-
-.content-box{
-
-background:#F7F7F7;
-
-border-radius:14px;
-
-padding:30px;
-
-box-shadow:0 8px 20px rgba(0,0,0,0.15);
-
-min-height:220px;
-
-position:relative;
-
-overflow:hidden;
-
-}
-
-/* CONTENIDO */
-
-.tab-content{
-display:none;
-animation:fadeSlide .6s ease;
-}
-
-.tab-content.active{
-display:block;
-}
-
-/* TITULOS */
-
-h2{
-color:#00779A;
-margin-bottom:10px;
-font-weight:600;
-}
-
-h3{
-margin-top:15px;
-color:#00779A;
-font-weight:600;
-}
-
-/* TEXTO */
-
-p{
-margin-top:8px;
-line-height:1.6;
-color:#333;
-}
-
-ul{
-margin-top:10px;
-padding-left:20px;
-}
-
-li{
-margin-bottom:6px;
-}
-
-/* ANIMACION */
-
-@keyframes fadeSlide{
-
-from{
-opacity:0;
-transform:translateY(20px);
-}
-
-to{
-opacity:1;
-transform:translateY(0);
-}
-
-}
-
-</style>
+            .tab-btn {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-<div class="container">
+    <div class="instruction-text">
+        Haga clic sobre cada botón para ampliar la información
+    </div>
 
-<div class="tabs">
+    <div class="container">
 
-<button class="tab-btn active" onclick="openTab(event,'t1')">
-CENTRADO EN EL PACIENTE
-</button>
+        <div class="tabs">
 
-<button class="tab-btn" onclick="openTab(event,'t2')">
-OPORTUNO
-</button>
+            <button class="tab-btn active" onclick="openTab(event,'t1')">
+                CENTRADO EN EL PACIENTE
+            </button>
 
-<button class="tab-btn" onclick="openTab(event,'t3')">
-EQUITATIVO
-</button>
+            <button class="tab-btn" onclick="openTab(event,'t2')">
+                OPORTUNO
+            </button>
 
-<button class="tab-btn" onclick="openTab(event,'t4')">
-ACCESIBILIDAD
-</button>
+            <button class="tab-btn" onclick="openTab(event,'t3')">
+                EQUITATIVO
+            </button>
 
-</div>
+            <button class="tab-btn" onclick="openTab(event,'t4')">
+                ACCESIBILIDAD
+            </button>
 
-<div class="content-box">
+            <button class="tab-btn" onclick="openTab(event,'t5')">
+                SEGURIDAD
+            </button>
 
-<div id="t1" class="tab-content active">
+            <button class="tab-btn" onclick="openTab(event,'t6')">
+                EFICACIA
+            </button>
 
-<h2>Centrado en el paciente</h2>
+            <button class="tab-btn" onclick="openTab(event,'t7')">
+                EFICIENCIA
+            </button>
 
-<p>
-Hace referencia a la facultad de los servicios de salud para ofrecer atención médica personalizada, adaptada a las necesidades y preferencias individuales de los pacientes. En este sentido, el bienestar de los pacientes debe orientar todas las decisiones clínicas.
-</p>
+        </div>
 
-<h3>Ejemplos:</h3>
+        <div class="content-box">
 
-<ul>
-<li>Nivel de satisfacción de los pacientes con la atención recibida.</li>
-<li>Respeto a la dignidad y derechos de los pacientes.</li>
-<li>Calidad de la comunicación entre el personal médico y el paciente. Tomado de: https://global.tiffin.edu/noticias/dimensiones-para-evaluar-la-calidad-de-los-servicios-de-salud</li>
-</ul>
+            <div id="t1" class="tab-content active">
+                <h2>Centrado en el paciente</h2>
+                <p>
+                    Hace referencia a la facultad de los servicios de salud para ofrecer atención médica personalizada,
+                    adaptada a las necesidades y preferencias individuales de los pacientes. En este sentido, el
+                    bienestar de los pacientes debe orientar todas las decisiones clínicas.
+                </p>
+                <h3>Ejemplos:</h3>
+                <ul>
+                    <li>Nivel de satisfacción de los pacientes con la atención recibida.</li>
+                    <li>Respeto a la dignidad y derechos de los pacientes.</li>
+                    <li>Calidad de la comunicación entre el personal médico y el paciente. Tomado de:
+                        https://global.tiffin.edu/noticias/dimensiones-para-evaluar-la-calidad-de-los-servicios-de-salud
+                    </li>
+                </ul>
+            </div>
 
-</div>
+            <div id="t2" class="tab-content">
+                <h2>Oportuno</h2>
+                <p>
+                    En este caso, se refiere a una atención médica proporcionada en el momento conveniente, reduciendo
+                    los tiempos de espera y minimizando los retrasos en la atención. Esto independientemente de la
+                    patología o del tipo de tratamiento que se requiera.
+                </p>
+                <h3>Ejemplos:</h3>
+                <ul>
+                    <li>Tiempo promedio de atención en urgencias.</li>
+                    <li>Intervalo entre la detección de una enfermedad y el inicio del tratamiento.</li>
+                    <li>Cumplimiento de tiempos de referencia y contrarreferencia.</li>
+                </ul>
+            </div>
 
-<div id="t2" class="tab-content">
+            <div id="t3" class="tab-content">
+                <h2>Equitativo</h2>
+                <p>
+                    Esto significa que la atención médica debe ser ofrecida a todos los pacientes de manera imparcial,
+                    sin importar su origen social, económico, religioso o cultural.
+                </p>
+                <h3>Ejemplos:</h3>
+                <ul>
+                    <li>Diferencias en el acceso y uso de servicios según nivel socioeconómico.</li>
+                    <li>Cobertura de salud en poblaciones vulnerables.</li>
+                    <li>Proporción de atención brindada a grupos minoritarios o con discapacidad.</li>
+                </ul>
+            </div>
 
-<h2>Oportuno</h2>
+            <div id="t4" class="tab-content">
+                <h2>Accesibilidad</h2>
+                <p>
+                    Hace referencia a que todas las personas puedan acceder a los servicios de salud cuando los
+                    necesiten, sin barreras económicas, geográficas o culturales. Para ello es necesario que la atención
+                    esté disponible en todos los niveles de asistencia, garantizando infraestructuras adecuadas y
+                    suficiente personal capacitado. Igualmente, la accesibilidad no solo se refiere a la disponibilidad
+                    física de los servicios, sino también a su asequibilidad, asegurando que los costos no sean un
+                    obstáculo para recibir atención.
+                </p>
+                <h3>Ejemplos:</h3>
+                <ul>
+                    <li>Tiempo de espera para consultas, exámenes y cirugías.</li>
+                    <li>Cobertura de servicios de salud según ubicación geográfica.</li>
+                    <li>Infraestructura adecuada.</li>
+                    <li>Disponibilidad de personal de salud y tecnología médica.</li>
+                </ul>
+            </div>
 
-<p>
-En este caso, se refiere a una atención médica proporcionada en el momento conveniente, reduciendo los tiempos de espera y minimizando los retrasos en la atención. Esto independientemente de la patología o del tipo de tratamiento que se requiera.
-</p>
+            <div id="t5" class="tab-content">
+                <h2>Seguridad</h2>
+                <p>
+                    Se refiere a la capacidad de los servicios de salud para proteger a los pacientes de lesiones y
+                    daños, tanto a nivel preventivo como diagnóstico y terapéutico. Significa que cualquier intervención
+                    y tratamiento, deben ser ajustadas a las medidas requeridas que no generen perjuicios colaterales
+                    distintos al malestar inicial.
+                </p>
+                <h3>Ejemplo:</h3>
+                <ul>
+                    <li>Tasa de infecciones asociadas a la atención en salud (IAAS).</li>
+                    <li>Frecuencia de eventos adversos y errores médicos.</li>
+                    <li>Cumplimiento de protocolos de bioseguridad. (Sulbarán, 2025, en Tiffin)</li>
+                </ul>
+            </div>
 
-<h3>Ejemplos:</h3>
+            <div id="t6" class="tab-content">
+                <h2>Eficacia</h2>
+                <p>
+                    Es la cualidad de brindar tratamientos y procedimientos que produzcan los resultados deseados,
+                    cumpliendo con los estándares de práctica clínica. En este sentido, engloba los saberes técnicos y
+                    la experiencia de los profesionales que proporcionan los servicios sanitarios. Así como también, la
+                    adecuación tecnológica y los conocimientos científicos.
+                </p>
+                <h3>Ejemplo:</h3>
+                <ul>
+                    <li>Adherencia a guías de práctica clínica basadas en evidencia.</li>
+                    <li>Resultados en la salud del paciente (ejemplo: tasas de recuperación y mortalidad).</li>
+                    <li>Calidad en el diagnóstico y tratamiento de enfermedades.</li>
+                </ul>
+            </div>
 
-<ul>
-<li>Tiempo promedio de atención en urgencias.</li>
-<li>Intervalo entre la detección de una enfermedad y el inicio del tratamiento.</li>
-<li>Cumplimiento de tiempos de referencia y contrarreferencia.</li>
-</ul>
+            <div id="t7" class="tab-content">
+                <h2>Eficiencia</h2>
+                <p>
+                    Se trata de usar los recursos de manera productiva, certificando la máxima calidad de atención
+                    médica que sea posible, en el momento requerido y al menor costo. De igual forma, este apartado
+                    engloba la prevención del malgasto de recursos, suministros o energías.
+                </p>
+                <h3>Ejemplos:</h3>
+                <ul>
+                    <li>La tasa de reingresos hospitalarios (menores son mejores), la tasa de autorización de cirugías
+                        (más alta es eficiente), la proporción personal-paciente (idealmente, más bajo para mejor
+                        atención), y la tasa de cumplimiento de programaciones quirúrgicas.</li>
+                    <li>También se consideran la eficiencia en la ocupación de camas, el costo por estancia hospitalaria
+                        y la eficiencia en el uso de recursos diagnósticos (como equipos).</li>
+                </ul>
+            </div>
 
-</div>
+        </div>
+    </div>
 
-<div id="t3" class="tab-content">
-
-<h2>Equitativo</h2>
-
-<p>
-Esto significa que la atención médica debe ser ofrecida a todos los pacientes de manera imparcial, sin importar su origen social, económico, religioso o cultural.
-</p>
-
-<h3>Ejemplos:</h3>
-
-<ul>
-<li>Diferencias en el acceso y uso de servicios según nivel socioeconómico.</li>
-<li>Cobertura de salud en poblaciones vulnerables.</li>
-<li>Proporción de atención brindada a grupos minoritarios o con discapacidad.</li>
-</ul>
-
-</div>
-
-<div id="t4" class="tab-content">
-
-<h2>Accesibilidad</h2>
-
-<p>
-Hace referencia a que todas las personas puedan acceder a los servicios de salud cuando los necesiten, sin barreras económicas, geográficas o culturales. Para ello es necesario que la atención esté disponible en todos los niveles de asistencia, garantizando infraestructuras adecuadas y suficiente personal capacitado. Igualmente, la accesibilidad no solo se refiere a la disponibilidad física de los servicios, sino también a su asequibilidad, asegurando que los costos no sean un obstáculo para recibir atención.
-</p>
-
-<h3>Ejemplos:</h3>
-
-<ul>
-<li>Tiempo de espera para consultas, exámenes y cirugías.</li>
-<li>Cobertura de servicios de salud según ubicación geográfica.</li>
-<li>Infraestructura adecuada.</li>
-<li>Disponibilidad de personal de salud y tecnología médica.</li>
-</ul>
-
-</div>
-
-</div>
-</div>
-
-<script>
-
-function openTab(evt,tabId){
-
-const buttons=document.querySelectorAll(".tab-btn");
-const contents=document.querySelectorAll(".tab-content");
-
-buttons.forEach(btn=>btn.classList.remove("active"));
-contents.forEach(c=>c.classList.remove("active"));
-
-evt.currentTarget.classList.add("active");
-document.getElementById(tabId).classList.add("active");
-
-}
-
-</script>
+    <script>
+        function openTab(evt, tabId) {
+            const buttons = document.querySelectorAll(".tab-btn");
+            const contents = document.querySelectorAll(".tab-content");
+            buttons.forEach(btn => btn.classList.remove("active"));
+            contents.forEach(c => c.classList.remove("active"));
+            evt.currentTarget.classList.add("active");
+            document.getElementById(tabId).classList.add("active");
+        }
+    </script>
 
 </body>
+
 </html>
