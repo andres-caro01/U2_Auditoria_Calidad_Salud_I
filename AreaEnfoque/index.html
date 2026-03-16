@@ -9,7 +9,7 @@
         /* --- Estilos Generales --- */
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #f8f9fa; /* Un fondo muy claro para resaltar las tarjetas */
+            background-color: #f8f9fa; 
             color: #333;
             margin: 0;
             padding: 40px;
@@ -21,7 +21,7 @@
         /* --- Título Principal --- */
         .page-title {
             font-size: 2.5rem;
-            color: #1a4f50; /* El color azulado oscuro del título */
+            color: #1a4f50;
             font-weight: 600;
             margin-bottom: 30px;
             text-align: center;
@@ -30,7 +30,7 @@
         /* --- Contenedor de Tarjetas (Bento Grid) --- */
         .cards-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Columnas responsivas */
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 25px;
             max-width: 1200px;
             width: 100%;
@@ -43,42 +43,33 @@
             padding: 25px;
             display: flex;
             flex-direction: column;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05); /* Sombra suave */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
             position: relative;
             overflow: hidden;
-            border: 2px solid transparent; /* Para los bordes coloreados al hacer hover */
+            border: 2px solid transparent;
             transition: all 0.3s ease-in-out;
         }
 
-        /* --- Efecto de Elevación y Borde al pasar el ratón --- */
         .card:hover {
-            transform: translateY(-8px); /* Elevar la tarjeta */
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1); /* Sombra más pronunciada */
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
         }
 
-        /* --- Estilos Específicos por Tarjeta (Colores y Bordes) --- */
+        /* --- Estilos Específicos por Tarjeta --- */
         /* Tarjeta 1: Seguridad */
-        .card-seguridad {
-            border-color: rgba(121, 134, 136, 0.2);
-        }
-        .card-seguridad:hover {
-            border-color: rgba(121, 134, 136, 0.5);
-        }
+        .card-seguridad { border-color: rgba(121, 134, 136, 0.2); }
+        .card-seguridad:hover { border-color: rgba(121, 134, 136, 0.5); }
         .card-seguridad::before {
             content: '';
             position: absolute;
             top: 0; left: 0; width: 100%; height: 6px;
-            background-color: #798688; /* Color de la barra superior */
+            background-color: #798688;
             border-radius: 20px 20px 0 0;
         }
 
         /* Tarjeta 2: Infraestructura */
-        .card-infraestructura {
-            border-color: rgba(57, 85, 149, 0.2);
-        }
-        .card-infraestructura:hover {
-            border-color: rgba(57, 85, 149, 0.5);
-        }
+        .card-infraestructura { border-color: rgba(57, 85, 149, 0.2); }
+        .card-infraestructura:hover { border-color: rgba(57, 85, 149, 0.5); }
         .card-infraestructura::before {
             content: '';
             position: absolute;
@@ -88,12 +79,8 @@
         }
 
         /* Tarjeta 3: Procesos */
-        .card-procesos {
-            border-color: rgba(46, 62, 114, 0.2);
-        }
-        .card-procesos:hover {
-            border-color: rgba(46, 62, 114, 0.5);
-        }
+        .card-procesos { border-color: rgba(46, 62, 114, 0.2); }
+        .card-procesos:hover { border-color: rgba(46, 62, 114, 0.5); }
         .card-procesos::before {
             content: '';
             position: absolute;
@@ -103,12 +90,8 @@
         }
 
         /* Tarjeta 4: Tecnologías */
-        .card-tecnologias {
-            border-color: rgba(119, 196, 203, 0.2);
-        }
-        .card-tecnologias:hover {
-            border-color: rgba(119, 196, 203, 0.5);
-        }
+        .card-tecnologias { border-color: rgba(119, 196, 203, 0.2); }
+        .card-tecnologias:hover { border-color: rgba(119, 196, 203, 0.5); }
         .card-tecnologias::before {
             content: '';
             position: absolute;
@@ -117,14 +100,13 @@
             border-radius: 20px 20px 0 0;
         }
 
-
         /* --- Títulos de las Tarjetas --- */
         .card-title {
             font-size: 1.25rem;
-            color: #1a4f50; /* El mismo azulado oscuro para los subtítulos */
+            color: #1a4f50;
             font-weight: 600;
             margin-bottom: 20px;
-            padding-top: 15px; /* Dejar espacio para la barra superior */
+            padding-top: 15px;
         }
 
         /* --- Texto de las Tarjetas --- */
@@ -133,54 +115,10 @@
             font-weight: 400;
             line-height: 1.6;
             margin: 0;
-            opacity: 0.85; /* Un poco de opacidad para mejor legibilidad */
+            opacity: 0.85;
         }
 
-        /* --- Elementos Decorativos e Interacciones (Solo visuales) --- */
-        
-        /* Simulación de la barra de navegación lateral */
-        .nav-sim {
-            position: fixed;
-            left: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            opacity: 0.5;
-        }
-        .nav-sim div {
-            width: 10px; height: 10px;
-            border-radius: 50%;
-            border: 2px solid #1a4f50;
-        }
-        .nav-sim div.active {
-            background-color: #1a4f50;
-        }
-
-        /* Simulación de los botones laterales */
-        .side-btn-sim {
-            position: fixed;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 40px; height: 40px;
-            border-radius: 50%;
-            background-color: rgba(26, 79, 80, 0.1);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-weight: bold;
-            font-size: 1.2rem;
-            color: #1a4f50;
-            cursor: pointer;
-            opacity: 0.7;
-            transition: opacity 0.2s ease;
-        }
-        .side-btn-sim:hover { opacity: 1; }
-        .btn-prev { left: 40px; }
-        .btn-next { right: 40px; }
-
-        /* Simulación de las leyendas inferiores */
+        /* --- Leyenda Inferior --- */
         .footnote-sim {
             margin-top: 50px;
             text-align: right;
@@ -194,17 +132,11 @@
         @media (max-width: 768px) {
             body { padding: 20px; }
             .page-title { font-size: 2rem; }
-            .side-btn-sim { display: none; } /* Ocultar botones en móvil */
-            .cards-container { grid-template-columns: 1fr; } /* Una columna */
+            .cards-container { grid-template-columns: 1fr; }
         }
-
     </style>
 </head>
 <body>
-
-    <div class="nav-sim"><div></div><div class="active"></div><div></div></div>
-    <div class="side-btn-sim btn-prev">&lt;</div>
-    <div class="side-btn-sim btn-next">&gt;</div>
 
     <h1 class="page-title">Ejemplos por área de enfoque</h1>
 
