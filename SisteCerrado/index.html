@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <title>Presentación Automatizada - Sistemas de Salud</title>
+    <title>Presentación Manual - Sistemas de Salud</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/theme/white.min.css">
@@ -75,22 +75,22 @@
     <div class="reveal">
         <div class="slides">
 
-            <section data-transition="fade" data-autoslide="1000">
+            <section data-transition="fade">
                 <div style="text-align: center;">
-                    <h1 class="welcome-title fragment fade-down" data-autoslide="800">Bienvenido</h1>
+                    <h1 class="welcome-title fragment fade-down">Bienvenido</h1>
                     <div class="instruction-card fragment fade-up">
                         <p style="font-weight: 600; color: var(--primary-blue);">Instrucciones de navegación:</p>
                         <div style="text-align: left; display: inline-block; font-size: 0.9em;">
-                            <p>⌨️ Flechas o 🖱️ Clic para saltar manualmente.</p>
-                            <p>⏳ Los elementos aparecerán automáticamente.</p>
+                            <p>⌨️ Usa las Flechas del teclado.</p>
+                            <p>🖱️ Haz Clic en las flechas de pantalla o toca para avanzar.</p>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <section data-transition="slide" data-autoslide="2000">
-                <h2 class="fragment fade-down" data-autoslide="1500">Sistemas de Administración de Medicamentos (CSTD)</h2>
-                <div class="fragment fade-right" data-autoslide="1500">
+            <section data-transition="slide">
+                <h2 class="fragment fade-down">Sistemas de Administración de Medicamentos (CSTD)</h2>
+                <div class="fragment fade-right">
                     <p><span class="label">Funcionalidad:</span> Dispositivos como los Closed System Transfer Devices (CSTDs) que evitan la exposición de personal y pacientes a fármacos peligrosos, manteniendo el sistema de preparación y administración cerrado y estéril.</p>
                 </div>
                 <div class="fragment fade-right">
@@ -98,16 +98,16 @@
                 </div>
             </section>
 
-            <section data-transition="slide" data-autoslide="2000">
-                <h2 class="fragment fade-down" data-autoslide="1200">Sistemas de Información Sanitaria (Internos)</h2>
-                <div class="fragment fade-in" data-autoslide="1200">
+            <section data-transition="slide">
+                <h2 class="fragment fade-down">Sistemas de Información Sanitaria (Internos)</h2>
+                <div class="fragment fade-in">
                     <p><span class="label">Funcionalidad:</span> Bases de datos y plataformas de gestión que operan de forma controlada para un propósito específico, no abiertos al público general.</p>
                 </div>
                 <div class="fragment fade-in" style="margin-top: 20px;">
                     <p><span class="label">Ejemplos:</span></p>
                     <ul>
-                        <li class="fragment fade-left" data-autoslide="800"><strong>RUAF (Registro Único de Afiliados):</strong> Maneja datos de afiliación al SGSSS.</li>
-                        <li class="fragment fade-left" data-autoslide="800"><strong>RIPS (Registro Individual de Prestación de Servicios):</strong> Recopila información detallada de los servicios prestados.</li>
+                        <li class="fragment fade-left"><strong>RUAF (Registro Único de Afiliados):</strong> Maneja datos de afiliación al SGSSS.</li>
+                        <li class="fragment fade-left"><strong>RIPS (Registro Individual de Prestación de Servicios):</strong> Recopila información detallada de los servicios prestados.</li>
                         <li class="fragment fade-left"><strong>SISMED:</strong> Sistema de información de precios de medicamentos. (Montaño, 2022)</li>
                     </ul>
                 </div>
@@ -127,13 +127,14 @@
     <script>
         Reveal.initialize({
             hash: true,
-            controls: true,
-            progress: true,
+            controls: true,        // Muestra las flechas en pantalla
+            progress: true,        // Muestra la barra de progreso
             center: true,
             transition: 'slide',
-            // Configuración de auto-animación
-            autoSlide: 0, // No pasa de diapositiva solo, pero sí activa los fragmentos internos
-            autoSlideStoppable: true, 
+            touch: true,           // Habilita navegación táctil
+            keyboard: true,        // Habilita teclado
+            autoSlide: 0,          // DESACTIVA la reproducción automática
+            loop: false            // No reinicia automáticamente al llegar al final
         });
     </script>
 </body>
