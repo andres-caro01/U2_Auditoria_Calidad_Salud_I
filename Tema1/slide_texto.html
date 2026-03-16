@@ -14,7 +14,6 @@
     body {
       margin: 0;
       padding: 0;
-      /* Fuente Poppins aplicada */
       font-family: 'Poppins', sans-serif;
       display: flex;
       justify-content: center;
@@ -23,12 +22,11 @@
       background: transparent;
     }
 
-    /* CONTENEDOR PRINCIPAL */
     .slider-wrapper {
       position: relative;
       width: calc(90% - 60px); 
       max-width: 900px;
-      height: 450px; /* Aumentado ligeramente para dar aire al texto justificado */
+      height: 450px; 
       display: flex;
       align-items: center;
       justify-content: center;
@@ -45,36 +43,46 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      /* Eliminamos text-align center de aquí para controlar h2 y p por separado */
     }
 
     .slide.active {
       display: flex;
     }
 
-    /* TÍTULO */
     .slide h2 {
       font-size: 36px;
       font-weight: 900;
       color: var(--primary-blue);
       margin-bottom: 20px;
-      text-align: center; /* El título se mantiene centrado para estética */
+      text-align: center;
       animation: slideInRight var(--transition-speed) forwards;
     }
 
-    /* PÁRRAFO JUSTIFICADO A LA IZQUIERDA */
     .slide p {
       font-size: 17px;
       line-height: 1.7;
       color: var(--text-color);
       max-width: 85%;
-      text-align: justify; /* Texto justificado */
+      text-align: justify;
       margin-left: auto;
       margin-right: auto;
       animation: slideInLeft var(--transition-speed) forwards;
     }
 
-    /* ANIMACIONES */
+    /* ESTILOS DEL CONTADOR */
+    .slide-counter {
+      position: absolute;
+      bottom: 20px;
+      right: 30px;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--primary-blue);
+      background: rgba(37, 99, 235, 0.1);
+      padding: 5px 12px;
+      border-radius: 20px;
+      z-index: 15;
+    }
+
     @keyframes slideInRight {
       from { transform: translateX(100px); opacity: 0; }
       to { transform: translateX(0); opacity: 1; }
@@ -85,7 +93,6 @@
       to { transform: translateX(0); opacity: 1; }
     }
 
-    /* BOTONES DE NAVEGACIÓN */
     .nav-btn {
       position: absolute;
       top: 50%;
@@ -122,6 +129,8 @@
 <body>
 
   <div class="slider-wrapper">
+    <div class="slide-counter" id="counter">1 / 2</div>
+
     <button class="nav-btn prev" onclick="changeSlide(-1)">
       <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
     </button>
@@ -144,6 +153,12 @@
   <script>
     let currentSlide = 0;
     const slides = document.querySelectorAll('.slide');
+    const counter = document.getElementById('counter');
+
+    // Inicializar el contador al cargar
+    function updateCounter() {
+      counter.innerText = `${currentSlide + 1} / ${slides.length}`;
+    }
 
     function changeSlide(direction) {
       slides[currentSlide].style.display = 'none';
@@ -153,9 +168,13 @@
 
       slides[currentSlide].style.display = 'flex';
       slides[currentSlide].classList.add('active');
+      
+      updateCounter();
     }
+
+    // Llamada inicial para asegurar que el contador sea correcto desde el inicio
+    updateCounter();
   </script>
 
 </body>
 </html>
-
